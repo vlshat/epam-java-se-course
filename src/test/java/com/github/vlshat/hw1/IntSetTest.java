@@ -3,6 +3,8 @@ package com.github.vlshat.hw1;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -32,6 +34,8 @@ public class IntSetTest {
         IntSet intSet = new IntSet();
         intSet.add(7);
         intSet.remove(7);
+        intSet.add(-3);
+        intSet.remove(-3);
         assertTrue(intSet.equals(new IntSet()));
 
     }
@@ -52,6 +56,7 @@ public class IntSetTest {
         set1.add(64);
         set1.add(128);
         set1.add(1024);
+        set1.add(-3);
 
         IntSet set2 = new IntSet();
 
@@ -67,6 +72,7 @@ public class IntSetTest {
         controlSet.add(128);
         controlSet.add(1023);
         controlSet.add(1024);
+        controlSet.add(-3);
 
         IntSet result = set1.union(set2);
 
@@ -79,15 +85,19 @@ public class IntSetTest {
         set1.add(128);
         set1.add(256);
         set1.add(300);
+        set1.add(-3);
+        set1.add(-10);
 
         IntSet set2 = new IntSet();
         set2.add(128);
         set2.add(256);
         set2.add(1);
+        set2.add(-3);
 
         IntSet control = new IntSet();
         control.add(128);
         control.add(256);
+        control.add(-3);
 
         IntSet result = set1.intersection(set2);
 
@@ -100,6 +110,8 @@ public class IntSetTest {
         set1.add(8);
         set1.add(64);
         set1.add(128);
+        set1.add(-64);
+        set1.add(1024);
 
         IntSet set2 = new IntSet();
         set2.add(128);
@@ -108,11 +120,17 @@ public class IntSetTest {
 
         IntSet control = new IntSet();
         control.add(8);
+        control.add(1024);
         control.add(64);
         control.add(128);
+        control.add(-64);
         control.remove(128);
 
         IntSet result = set1.difference(set2);
+//        System.out.println(Arrays.toString(result.getNegativeData()));
+//        System.out.println(Arrays.toString(control.getNegativeData()));
+//        System.out.println(Arrays.toString(result.getData()));
+//        System.out.println(Arrays.toString(control.getData()));
 
         assertTrue(result.equals(control));
     }
@@ -120,12 +138,14 @@ public class IntSetTest {
     @Test
     public void isSubsetOf() throws Exception {
         IntSet set1 = new IntSet();
+        set1.add(-65);
         set1.add(128);
         set1.add(256);
         set1.add(512);
         set1.add(1024);
 
         IntSet set2 = new IntSet();
+        set2.add(-65);
         set2.add(128);
         set2.add(256);
 

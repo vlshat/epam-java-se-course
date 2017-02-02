@@ -7,7 +7,7 @@ public class Application
 		//System.out.println((int) Math.pow(2, 30));
         int a = Integer.MIN_VALUE;
         System.out.println(Integer.MIN_VALUE / 64);
-        System.out.println(Integer.toBinaryString(0 | 1));
+        System.out.println(1 << -1);
     }
 
 }
