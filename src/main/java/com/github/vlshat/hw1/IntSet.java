@@ -7,7 +7,6 @@ import java.util.Arrays;
 /**
  * Created by wladislaw on 01.02.17.
  */
-//max size 2 ^ 31 - 1
 public class IntSet {
 
     private long[] data = new long[1];
@@ -23,6 +22,10 @@ public class IntSet {
         this.negativeData = negativeData;
     }
 
+    /**
+     * @param value
+     * @return
+     */
     public boolean add(int value) {
 
         if (value < 0) {
@@ -51,8 +54,13 @@ public class IntSet {
         }
     }
 
-    private long[] expand(int cell, long[] array) {
-        long[] newData = new long[cell + 1];
+    /**
+     * @param capacity - new array have to have this capacity
+     * @param array - source array
+     * @return new array
+     */
+    private long[] expand(int capacity, long[] array) {
+        long[] newData = new long[capacity + 1];
         System.arraycopy(array, 0, newData, 0, array.length);
         return newData;
     }
@@ -63,8 +71,11 @@ public class IntSet {
             int cell = -(value / 64);
             if (cell >= negativeData.length) {
                 return false;
+            } else if ((negativeData[cell] & (1L << -(value % 64))) != (1L << -(value % 64))){
+                return false;
             }
-            negativeData[cell] ^= (1L << (-value % 64));
+
+            negativeData[cell] ^= (1L << -(value % 64));
 
             return true;
 
@@ -73,30 +84,36 @@ public class IntSet {
 
             if (cell >= data.length) {
                 return false;
+            } else if ((data[cell] & (1L << (value % 64))) != (1L << (value % 64))){
+                return false;
             }
             data[cell] ^= (1L << (value % 64));
 
             return true;
         }
+
     }
 
+
+    /**
+     * @param value - Does set contains this value?
+     * @return
+     */
     public boolean contains(int value) {
 
         if (value < 0) {
-
             return arrayContainsValue(negativeData, -(value / 64), -(value % 64));
-
         } else {
             int cell = value / 64;
-
             return arrayContainsValue(data, value / 64, value % 64);
-
         }
-
-
     }
 
 
+    /**
+     * @param set
+     * @return
+     */
     public IntSet union(IntSet set) {
 
         long[] negativeResult;
@@ -278,13 +295,5 @@ public class IntSet {
         }
 
         return result;
-    }
-
-    public long[] getData() {
-        return data;
-    }
-
-    public long[] getNegativeData() {
-        return negativeData;
     }
 }

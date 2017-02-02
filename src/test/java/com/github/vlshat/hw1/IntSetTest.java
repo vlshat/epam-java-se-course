@@ -36,8 +36,9 @@ public class IntSetTest {
         intSet.remove(7);
         intSet.add(-3);
         intSet.remove(-3);
+        intSet.remove(-8);
         assertTrue(intSet.equals(new IntSet()));
-
+        assertFalse(intSet.remove(-9));
     }
 
     @Test
