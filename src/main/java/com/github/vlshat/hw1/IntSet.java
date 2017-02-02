@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class IntSet {
 
     private long[] data = new long[1];
-    public static int MAX_VALUE = Integer.MAX_VALUE;
+    private long[] negativeData = new long[1];
 
 
     public IntSet(){
@@ -23,21 +23,46 @@ public class IntSet {
     public boolean add(int value){
 
 
-        if (value < 0 || value > MAX_VALUE){
-            return false;
+        if (value < 0){
+
+            boolean isMinValue = false;
+            if (value == Integer.MIN_VALUE){
+                isMinValue = true;
+            }
+            int cell = -(value / 64);
+
+            //isEnough
+            if (cell >= negativeData.length){
+                long[] newData = new long[cell + 1];
+                System.arraycopy(negativeData, 0, newData,0,negativeData.length);
+                negativeData = newData;
+            }
+
+            if (isMinValue){
+                negativeData[cell] |= 1L;
+
+            } else {
+                negativeData[cell] |= 1L << (-value % 64);
+
+            }
+
+
+            return true;
+
+        } else {
+            int cell = (value / 64);
+
+            if (cell >= data.length){
+                long[] newData = new long[cell + 1];
+                System.arraycopy(data, 0, newData,0,data.length);
+                data = newData;
+            }
+
+            data[cell] |= 1L << (value % 64);
+
+            return true;
         }
 
-        int cell = (value / 64);
-
-        if (cell + 1 > data.length){
-            long[] newData = new long[cell + 1];
-            System.arraycopy(data, 0, newData,0,data.length);
-            data = newData;
-        }
-
-        data[cell] |= 1L << (value - cell*64);
-
-        return true;
     }
 
     public boolean remove(int value){
@@ -46,27 +71,47 @@ public class IntSet {
         if (cell >= data.length){
             return false;
         }
-        data[cell] ^= (1L << (value - cell * 64));
+        data[cell] ^= (1L << (value % 64));
 
         return true;
     }
 
     public boolean contains(int value){
 
-        int cell = value / 64;
+        if (value < 0){
 
-        if (cell + 1 > data.length){
+            int cell = -(value / 64);
 
-            return false;
+            if (cell >= negativeData.length){
 
-        } else if ((data[cell] & (1L << (value - cell * 64))) == (1L << (value - cell * 64))){
+                return false;
 
-            return true;
+            } else if ((negativeData[cell] & (1L << (-value % 64))) == (1L << (-value % 64))){
 
-        } else{
+                return true;
 
-            return false;
+            } else{
+
+                return false;
+            }
+        } else {
+            int cell = value / 64;
+
+            if (cell >= data.length){
+
+                return false;
+
+            } else if ((data[cell] & (1L << (value % 64))) == (1L << (value % 64))){
+
+                return true;
+
+            } else{
+
+                return false;
+            }
+
         }
+
 
     }
 
@@ -206,6 +251,10 @@ public class IntSet {
             return false;
 
         return true;
+    }
+
+    private void checkCapacity(int cell, long[] data){
+
     }
 
 }

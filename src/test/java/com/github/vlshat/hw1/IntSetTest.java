@@ -13,14 +13,18 @@ public class IntSetTest {
     public void add() throws Exception {
         IntSet intSet = new IntSet();
 
+
         assertTrue(intSet.add(0));
         assertTrue(intSet.add(1));
         assertTrue(intSet.contains(1));
-        assertTrue(intSet.add((int) Math.pow(2, 31)));
-        assertTrue(intSet.contains((int) Math.pow(2, 31)));
+        assertTrue(intSet.add(Integer.MAX_VALUE));
+        assertTrue(intSet.contains(Integer.MAX_VALUE));
         assertTrue(intSet.add((int) Math.pow(2, 30)));
         assertTrue(intSet.contains((int) Math.pow(2, 30)));
-        assertFalse(intSet.add(-1));
+        assertTrue(intSet.add(-1));
+        assertTrue(intSet.contains(-1));
+        assertTrue(intSet.add(Integer.MIN_VALUE));
+        assertTrue(intSet.contains(Integer.MIN_VALUE));
     }
 
     @Test
@@ -36,7 +40,9 @@ public class IntSetTest {
     public void contains() throws Exception {
         IntSet intSet = new IntSet();
         intSet.add(128);
+        intSet.add(-128);
         assertTrue(intSet.contains(128));
+        assertTrue(intSet.contains(-128));
     }
 
     @Test
