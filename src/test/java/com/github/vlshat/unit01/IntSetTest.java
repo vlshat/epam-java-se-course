@@ -1,9 +1,6 @@
-package com.github.vlshat.hw1;
+package com.github.vlshat.unit01;
 
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -123,16 +120,9 @@ public class IntSetTest {
         control.add(8);
         control.add(1024);
         control.add(64);
-        control.add(128);
         control.add(-64);
-        control.remove(128);
 
         IntSet result = set1.difference(set2);
-//        System.out.println(Arrays.toString(result.getNegativeData()));
-//        System.out.println(Arrays.toString(control.getNegativeData()));
-//        System.out.println(Arrays.toString(result.getData()));
-//        System.out.println(Arrays.toString(control.getData()));
-
         assertTrue(result.equals(control));
     }
 
@@ -156,6 +146,7 @@ public class IntSetTest {
 
         assertTrue(set2.isSubsetOf(set1));
         assertFalse(set3.isSubsetOf(set1));
+        assertFalse(set1.isSubsetOf(set3));
     }
 
 }
