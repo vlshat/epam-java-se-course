@@ -122,12 +122,8 @@ public class IntSet {
             return false;
         }
 
-        if (Arrays.equals(positiveData, arraysConjunction(positiveData, set.positiveData))
-                && Arrays.equals(negativeData, arraysConjunction(negativeData, set.negativeData))){
-            return true;
-        }
-
-        return false;
+        return Arrays.equals(positiveData, arraysConjunction(positiveData, set.positiveData))
+                && Arrays.equals(negativeData, arraysConjunction(negativeData, set.negativeData));
 
     }
 
