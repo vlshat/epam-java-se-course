@@ -3,6 +3,7 @@ package com.github.vlshat.unit01;
 /**
  * Created by wladislaw on 05.02.17.
  */
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -54,17 +55,17 @@ public class IntArrayList {
             return Integer.MIN_VALUE;
         }
 
-        final int mid = startInclusive + length/2;
+        final int mid = startInclusive + length / 2;
         return Math.max(
                 maxValueRec(data, startInclusive, mid),
                 maxValueRec(data, mid, endExlusive)
         );
     }
 
-    public void sort(){
+    public void sort() {
 
         //mergeSort(data, 0, getSize(), new int[getSize()]);
-       risingMergeSort(data, 0, getSize(), new int[getSize()]);
+        risingMergeSort(data, 0, getSize(), new int[getSize()]);
     }
 
 
@@ -75,18 +76,57 @@ public class IntArrayList {
      * @return index of the value or -indexToInsert - 1
      */
     public int binarySearch(int value) {
-        throw new UnsupportedOperationException();
+
+        int low = 0;
+        int high = data.length;
+        int mid = 0;
+
+        while (low < high) {
+            mid = (low + high) / 2;
+            if (value == data[mid]) {
+                return mid;
+            } else {
+                if (value < data[mid]) {
+                    high = mid;
+                } else {
+                    low = mid + 1;
+                }
+            }
+        }
+
+        return mid - 1;
+    }
+
+    public int binarySearchRec(int value, int low, int high) {
+//        int low = 0;
+//        int high = data.length;
+        int mid = (low + high) / 2;
+
+        if (low >= high) {
+            return mid - 1;
+        }
+
+        if (value == data[mid]) {
+            return mid;
+        } else {
+            if (value < data[mid]) {
+                return binarySearchRec(value, low, mid);
+            } else {
+                low = mid + 1;
+                return binarySearchRec(value, mid + 1, high);
+            }
+        }
     }
 
     private static void mergeSort(int[] data, int startInclusive, int endExclusive, int[] free) {
 
         int length = endExclusive - startInclusive;
 
-        if (length <= 1){
+        if (length <= 1) {
             return;
         }
 
-        int mid = startInclusive + length/2;
+        int mid = startInclusive + length / 2;
 
         mergeSort(data, startInclusive, mid, free);
         mergeSort(data, mid, endExclusive, free);
@@ -100,12 +140,12 @@ public class IntArrayList {
         int pointerA = startInclusive;
         int pointerB = mid;
 
-        for (int k = startInclusive; k < endExclusive; k++){
-            if (pointerA >= mid){
+        for (int k = startInclusive; k < endExclusive; k++) {
+            if (pointerA >= mid) {
                 data[k] = free[pointerB++];
-            } else if (pointerB >= endExclusive){
+            } else if (pointerB >= endExclusive) {
                 data[k] = free[pointerA++];
-            } else if (free[pointerA] < free[pointerB]){
+            } else if (free[pointerA] < free[pointerB]) {
                 data[k] = free[pointerA++];
             } else {
                 data[k] = free[pointerB++];
@@ -113,14 +153,13 @@ public class IntArrayList {
         }
     }
 
-    public static void risingMergeSort(int[] data, int startInclusive, int endExclusive, int[] free){
+    public static void risingMergeSort(int[] data, int startInclusive, int endExclusive, int[] free) {
         int length = data.length;
 
-        for (int size = 1; size < length; size+=size){
-            for (int start = 0; start < length; start+= size + size){
-                merger(data, start, start + size,Math.min(start + size + size, length), free);
+        for (int size = 1; size < length; size += size) {
+            for (int start = 0; start < length; start += size + size) {
+                merger(data, start, start + size, Math.min(start + size + size, length), free);
             }
-            System.out.println(Arrays.toString(data));
         }
     }
 
