@@ -65,7 +65,7 @@ public class IntArrayList {
     public void sort() {
 
         //mergeSort(data, 0, getSize(), new int[getSize()]);
-        risingMergeSort(data, 0, getSize(), new int[getSize()]);
+        risingMergeSort(data, getSize(), new int[getSize()]);
     }
 
 
@@ -97,9 +97,14 @@ public class IntArrayList {
         return mid - 1;
     }
 
+    /**
+     * Expects collection to be sorted.
+     *
+     * @param value value to find in collection
+     * @return index of the value or -indexToInsert - 1
+     */
     public int binarySearchRec(int value, int low, int high) {
-//        int low = 0;
-//        int high = data.length;
+
         int mid = (low + high) / 2;
 
         if (low >= high) {
@@ -153,7 +158,7 @@ public class IntArrayList {
         }
     }
 
-    public static void risingMergeSort(int[] data, int startInclusive, int endExclusive, int[] free) {
+    public static void risingMergeSort(int[] data, int endExclusive, int[] free) {
         int length = data.length;
 
         for (int size = 1; size < length; size += size) {

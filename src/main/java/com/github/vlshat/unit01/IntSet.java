@@ -17,12 +17,13 @@ public class IntSet {
     }
 
     private IntSet(long[] positiveData, long[] negativeData) {
-        this();
         this.positiveData = positiveData;
         this.negativeData = negativeData;
     }
 
     /**
+     * Adds value to set. Returns true on success
+     * and false if the value is already in the set.
      * @param value
      * @return
      */
@@ -52,6 +53,7 @@ public class IntSet {
     }
 
     /**
+     * Expands inner array of the set.
      * @param capacity - new array have to have this capacity
      * @param array - source array
      * @return new array
@@ -62,6 +64,11 @@ public class IntSet {
         return newData;
     }
 
+    /**
+     * Removes value. Return true on success, false if set doesn't contain value.
+     * @param value
+     * @return
+     */
     public boolean remove(int value) {
 
         if (!contains(value)){
@@ -77,7 +84,8 @@ public class IntSet {
     }
 
     /**
-     * @param value - Does set contains this value?
+     * Checks existence of the value int the set.
+     * @param value
      * @return
      */
     public boolean contains(int value) {
@@ -91,6 +99,7 @@ public class IntSet {
     }
 
     /**
+     * Operation A | B
      * @param set
      * @return
      */
@@ -101,6 +110,11 @@ public class IntSet {
     }
 
 
+    /**
+     * Operation A & B
+     * @param set
+     * @return
+     */
     public IntSet intersection(IntSet set) {
 
         return new IntSet(arraysConjunction(positiveData, set.positiveData),
@@ -108,6 +122,11 @@ public class IntSet {
 
     }
 
+    /**
+     * Operation A \ B
+     * @param set
+     * @return
+     */
     public IntSet difference(IntSet set) {
 
         return new IntSet(arraysDifference(positiveData, set.positiveData),
@@ -115,6 +134,11 @@ public class IntSet {
     }
 
 
+    /**
+     *
+     * @param set
+     * @return
+     */
     public boolean isSubsetOf(IntSet set) {
 
         if (set.positiveData.length < positiveData.length ||
@@ -128,6 +152,12 @@ public class IntSet {
     }
 
 
+    /**
+     * @param array - inner array
+     * @param cell - cell of the value's range
+     * @param shift - bit's location
+     * @return
+     */
     private boolean arrayContainsValue(long[] array, int cell, int shift) {
 
         if (cell >= array.length) {
@@ -143,6 +173,13 @@ public class IntSet {
         return false;
     }
 
+    /**
+     * Expects inner arrays of sets.
+     * Executes operation A | B
+     * @param firstArray
+     * @param secondArray
+     * @return
+     */
     private long[] arraysDisjunction(long[] firstArray, long[] secondArray) {
 
         long[] bigArray;
@@ -167,6 +204,13 @@ public class IntSet {
 
     }
 
+    /**
+     * Expects inner arrays of sets.
+     * Executes operation A & B
+     * @param firstArray
+     * @param secondArray
+     * @return
+     */
     private long[] arraysConjunction(long[] firstArray, long[] secondArray) {
 
         long[] bigArray;
@@ -190,6 +234,13 @@ public class IntSet {
         return result;
     }
 
+    /**
+     * Expects inner arrays of sets.
+     * Executes operation A \ B
+     * @param baseArray
+     * @param secondArray
+     * @return
+     */
     private long[] arraysDifference(long[] baseArray, long[] secondArray) {
 
         int minLength = 0;
@@ -211,6 +262,12 @@ public class IntSet {
         return result;
     }
 
+    /**
+     * @param array - inner array
+     * @param cell -cell of the value's range
+     * @param shift - location of the bit
+     * @return
+     */
     private boolean removeBit(long[] array, int cell, int shift){
 
         if (cell >= array.length) {
