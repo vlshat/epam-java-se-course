@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by wladislaw on 01.02.17.
+ *IntSet - data structure that stores values in range from -2^31 to 2^31 - 1.
  */
 public class IntSet {
 
@@ -34,22 +35,27 @@ public class IntSet {
         }
 
         if (value < 0) {
-
-            int cell = -(value / 64);
-            //isEnough
-            if (cell >= negativeData.length) {
-                negativeData = expand(cell, negativeData);
-            }
-            negativeData[cell] |= 1L << -(value % 64);
-
+            addToArray(-(value / 64), -(value % 64), negativeData);
         } else {
-            int cell = (value / 64);
-            if (cell >= positiveData.length) {
-                positiveData = expand(cell, positiveData);
-            }
-            positiveData[cell] |= 1L << (value % 64);
+            addToArray(value / 64, value % 64, positiveData);
         }
+
         return true;
+    }
+
+    /**
+     * Flips bit in a specific array.
+     * @param cell
+     * @param shift
+     * @param array
+     */
+    private void addToArray(int cell, int shift ,long[] array){
+
+        if (cell >= array.length){
+            array = expand(cell, array);
+        }
+
+        array[cell] |= 1L << shift;
     }
 
     /**
@@ -59,8 +65,15 @@ public class IntSet {
      * @return new array
      */
     private long[] expand(int capacity, long[] array) {
+
         long[] newData = new long[capacity + 1];
         System.arraycopy(array, 0, newData, 0, array.length);
+        if (array == negativeData){
+            negativeData = newData;
+        } else {
+            positiveData = newData;
+        }
+
         return newData;
     }
 
@@ -119,7 +132,6 @@ public class IntSet {
 
         return new IntSet(arraysConjunction(positiveData, set.positiveData),
                 arraysConjunction(negativeData, set.negativeData));
-
     }
 
     /**
@@ -148,7 +160,6 @@ public class IntSet {
 
         return Arrays.equals(positiveData, arraysConjunction(positiveData, set.positiveData))
                 && Arrays.equals(negativeData, arraysConjunction(negativeData, set.negativeData));
-
     }
 
 
@@ -161,15 +172,10 @@ public class IntSet {
     private boolean arrayContainsValue(long[] array, int cell, int shift) {
 
         if (cell >= array.length) {
-
             return false;
-
         } else if ((array[cell] & (1L << shift)) == (1L << shift)) {
-
             return true;
-
         }
-
         return false;
     }
 
@@ -201,7 +207,6 @@ public class IntSet {
         }
 
         return result;
-
     }
 
     /**

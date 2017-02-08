@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bd4965c0-fc8f-4537-a849-3fd2f1b67000" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/vlshat/Application.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/vlshat/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,7 +22,7 @@
       <file leaf-file-name="IntArrayList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="15">
               <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
               <folding />
             </state>
@@ -34,18 +32,18 @@
       <file leaf-file-name="IntSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="281" column="22" lean-forward="false" selection-start-line="281" selection-start-column="22" selection-end-line="281" selection-end-column="22" />
+            <state relative-caret-position="-1144">
+              <caret line="209" column="4" lean-forward="false" selection-start-line="209" selection-start-column="4" selection-end-line="209" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntArrayListTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntArrayListTest.java">
+      <file leaf-file-name="IntSetTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+            <state relative-caret-position="564">
+              <caret line="148" column="40" lean-forward="false" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -89,8 +87,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntSetTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntArrayListTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/vlshat/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" />
       </list>
     </option>
   </component>
@@ -128,6 +126,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -273,8 +273,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,7 +297,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntArrayListTest">
+  <component name="RunManager" selected="JUnit.IntSetTest">
     <configuration default="false" name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -807,10 +805,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.IntArrayListTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.IntArrayListTest.binarySerachRec" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Application" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.IntSetTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.IntSetTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.IntArrayListTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.IntArrayListTest.binarySerachRec" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Application" />
         <item index="4" class="java.lang.String" itemvalue="Application.LoopTest" />
       </list>
     </recent_temporary>
@@ -837,17 +835,13 @@
       <workItem from="1486204468057" duration="2255000" />
       <workItem from="1486288847794" duration="2539000" />
       <workItem from="1486292394868" duration="17373000" />
-      <workItem from="1486419033120" duration="1662000" />
+      <workItem from="1486419033120" duration="2306000" />
+      <workItem from="1486502486316" duration="191000" />
+      <workItem from="1486560564607" duration="1127000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="IntArrayListTest - 2017.02.05 at 21h 31m 38s.xml">
-      <configuration name="IntArrayListTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="IntArrayListTest - 2017.02.05 at 21h 32m 19s.xml">
-      <configuration name="IntArrayListTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="IntArrayListTest - 2017.02.05 at 21h 32m 41s.xml">
       <configuration name="IntArrayListTest" configurationId="JUnit" />
     </history-entry>
@@ -872,15 +866,21 @@
     <history-entry file="IntArrayListTest_binarySerachRec - 2017.02.05 at 21h 43m 02s.xml">
       <configuration name="IntArrayListTest.binarySerachRec" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="IntSetTest - 2017.02.08 at 16h 39m 43s.xml">
+      <configuration name="IntSetTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="IntSetTest - 2017.02.08 at 16h 43m 58s.xml">
+      <configuration name="IntSetTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65009000" />
+    <option name="totallyTimeSpent" value="66971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20711975" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -890,25 +890,25 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31229773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31229773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3151515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32575756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -969,6 +969,54 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntArrayListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntArrayListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1027,9 +1075,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2220">
           <caret line="148" column="40" lean-forward="false" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,9 +1099,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
           <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,9 +1115,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1860">
           <caret line="124" column="25" lean-forward="true" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,9 +1141,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1127,9 +1167,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1155,9 +1193,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="60" column="41" lean-forward="false" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1235,16 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntSetTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2190">
-          <caret line="148" column="40" lean-forward="false" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1259,7 +1285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,7 +1292,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1275,30 +1299,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="70" column="13" lean-forward="false" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntArrayListTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="15">
           <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/vlshat/unit01/IntSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="148" column="40" lean-forward="false" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="281" column="22" lean-forward="false" selection-start-line="281" selection-start-column="22" selection-end-line="281" selection-end-column="22" />
+        <state relative-caret-position="-1144">
+          <caret line="209" column="4" lean-forward="false" selection-start-line="209" selection-start-column="4" selection-end-line="209" selection-end-column="4" />
           <folding />
         </state>
       </provider>
