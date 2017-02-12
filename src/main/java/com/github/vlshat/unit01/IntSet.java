@@ -106,7 +106,6 @@ public class IntSet {
         if (value < 0) {
             return arrayContainsValue(negativeData, -(value / 64), -(value % 64));
         } else {
-            int cell = value / 64;
             return arrayContainsValue(positiveData, value / 64, value % 64);
         }
     }
@@ -161,7 +160,6 @@ public class IntSet {
         return Arrays.equals(positiveData, arraysConjunction(positiveData, set.positiveData))
                 && Arrays.equals(negativeData, arraysConjunction(negativeData, set.negativeData));
     }
-
 
     /**
      * @param array - inner array
@@ -279,7 +277,7 @@ public class IntSet {
             return false;
         }
 
-        array[cell] ^= (1L << shift);
+        array[cell] &= ~(1L << shift);
 
         return true;
     }
