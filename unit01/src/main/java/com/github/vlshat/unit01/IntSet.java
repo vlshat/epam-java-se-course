@@ -216,22 +216,12 @@ public class IntSet {
      */
     private long[] arraysConjunction(long[] firstArray, long[] secondArray) {
 
-        long[] bigArray;
-        long[] smallArray;
+        int minLength = Math.min(firstArray.length, secondArray.length);
+        long[] result = new long[minLength];
 
-        if (firstArray.length <= secondArray.length){
-            smallArray = firstArray;
-            bigArray = secondArray;
-        } else {
-            smallArray = secondArray;
-            bigArray = firstArray;
-        }
-
-        long[] result = new long[smallArray.length];
-        System.arraycopy(smallArray, 0, result, 0, smallArray.length);
-
-        for (int i = 0; i < smallArray.length; i++) {
-            result[i] &= bigArray[i];
+        System.arraycopy(firstArray, 0, result, 0, minLength);
+        for (int i = 0; i < minLength; i++) {
+            result[i] &= secondArray[i];
         }
 
         return result;
