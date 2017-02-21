@@ -186,22 +186,13 @@ public class IntSet {
      */
     private long[] arraysDisjunction(long[] firstArray, long[] secondArray) {
 
-        long[] bigArray;
-        long[] smallArray;
+        int maxLength = Math.max(firstArray.length, secondArray.length);
+        long[] result = new long[maxLength];
 
-        if (firstArray.length >= secondArray.length){
-            bigArray = firstArray;
-            smallArray = secondArray;
-        } else {
-            bigArray = firstArray;
-            smallArray = secondArray;
-        }
+        System.arraycopy(firstArray, 0, result, 0, maxLength);
 
-        long[] result = new long[bigArray.length];
-        System.arraycopy(bigArray, 0, result, 0, bigArray.length);
-
-        for (int i = 0; i < smallArray.length; i++) {
-            result[i] |= smallArray[i];
+        for (int i = 0; i < secondArray.length; i++) {
+            result[i] |= secondArray[i];
         }
 
         return result;

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="899a5360-5cb6-4bad-8d96-d762e7d46400" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="IntSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="241" column="34" lean-forward="true" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+            <state relative-caret-position="240">
+              <caret line="195" column="9" lean-forward="true" selection-start-line="195" selection-start-column="9" selection-end-line="195" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -660,7 +659,7 @@
       <updated>1487665736170</updated>
       <workItem from="1487665747671" duration="48000" />
       <workItem from="1487669313518" duration="108000" />
-      <workItem from="1487669474982" duration="602000" />
+      <workItem from="1487669474982" duration="774000" />
     </task>
     <servers />
   </component>
@@ -671,9 +670,12 @@
     <history-entry file="IntSetTest - 2017.02.21 at 12h 41m 42s.xml">
       <configuration name="IntSetTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="IntSetTest - 2017.02.21 at 12h 44m 47s.xml">
+      <configuration name="IntSetTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="758000" />
+    <option name="totallyTimeSpent" value="930000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
@@ -788,8 +790,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/vlshat/unit01/IntSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="241" column="34" lean-forward="true" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+        <state relative-caret-position="240">
+          <caret line="195" column="9" lean-forward="true" selection-start-line="195" selection-start-column="9" selection-end-line="195" selection-end-column="9" />
           <folding />
         </state>
       </provider>
