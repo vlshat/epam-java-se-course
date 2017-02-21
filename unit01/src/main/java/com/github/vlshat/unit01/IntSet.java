@@ -236,13 +236,7 @@ public class IntSet {
      */
     private long[] arraysDifference(long[] baseArray, long[] secondArray) {
 
-        int minLength = 0;
-
-        if (baseArray.length <= secondArray.length){
-            minLength = baseArray.length;
-        } else {
-            minLength = secondArray.length;
-        }
+        int minLength = Math.min(baseArray.length, secondArray.length);
 
         long[] result = new long[baseArray.length];
         System.arraycopy(baseArray, 0, result, 0, baseArray.length);
