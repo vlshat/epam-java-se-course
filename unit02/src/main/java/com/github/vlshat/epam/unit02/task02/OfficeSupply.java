@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 /**
  * Created by wladislaw on 24.02.17.
  */
-public class OfficeSupply {
+class OfficeSupply {
     private String name;
     private BigDecimal price;
 
-    public OfficeSupply(String name, BigDecimal price) {
+    OfficeSupply(String name, BigDecimal price) {
         this.name = name;
         this.price = price.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
@@ -18,7 +18,7 @@ public class OfficeSupply {
         return name;
     }
 
-    public BigDecimal getPrice() {
+    BigDecimal getPrice() {
         return price;
     }
 }

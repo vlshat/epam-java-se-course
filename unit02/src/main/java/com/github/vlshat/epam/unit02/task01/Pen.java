@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by wladislaw on 21.02.17.
  */
-public class Pen {
+class Pen {
 
     private String model;
     private PenType type;

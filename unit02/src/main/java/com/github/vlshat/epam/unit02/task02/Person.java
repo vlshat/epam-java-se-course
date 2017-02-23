@@ -5,13 +5,13 @@ import java.util.List;
 /**
  * Created by wladislaw on 24.02.17.
  */
-public class Person {
+class Person {
 
     private String name;
     private String surname;
     private List<OfficeSupply> officeSupplies;
 
-    public Person(String name, String surname, List<OfficeSupply> officeSupplies) {
+    Person(String name, String surname, List<OfficeSupply> officeSupplies) {
         this.name = name;
         this.surname = surname;
         this.officeSupplies = officeSupplies;

@@ -7,10 +7,10 @@ import java.util.List;
  * Created by wladislaw on 24.02.17.
  */
 
-public class SupplyAnalyzer {
+class SupplyAnalyzer {
 
-    public double getSum(Person person) {
-        
+    double getSum(Person person) {
+
         List<OfficeSupply> list = person.getOfficeSupplies();
         double price = 0;
 
