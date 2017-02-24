@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by wladislaw on 24.02.17.
  */
-public abstract class OfficeSupply {
+public abstract class OfficeSupply{
 
     private String title;
     private BigDecimal price;
@@ -30,4 +30,5 @@ public abstract class OfficeSupply {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
 }
