@@ -73,6 +73,6 @@ public class ComparatorTest {
                     list.get(i).getTitle()
                             .equals(expected.get(i).getTitle()));
         }
-        
+
     }
 }
