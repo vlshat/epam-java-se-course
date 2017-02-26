@@ -13,10 +13,11 @@ public class Submarine {
     }
 
     private class SubmarineEngine {
+
         boolean reactorIsWorking = false;
 
         private void startReactor(){
-            System.out.println("reactor started working");
+            System.out.println("Reactor started working");
             reactorIsWorking = true;
         }
 
