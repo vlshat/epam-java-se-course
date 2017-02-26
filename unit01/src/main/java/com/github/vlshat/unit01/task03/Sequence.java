@@ -1,4 +1,4 @@
-package com.github.vlshat.unit01;
+package com.github.vlshat.unit01.task03;
 
 import java.util.Map;
 import java.util.Scanner;
