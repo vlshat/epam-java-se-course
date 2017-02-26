@@ -9,10 +9,10 @@ class Pen {
 
     private String model;
     private PenType type;
-    private int inkColour;
+    private Colour inkColour;
     private BigDecimal price;
 
-    public Pen(String model, PenType type, int inkColour, BigDecimal price) {
+    public Pen(String model, PenType type, Colour inkColour, BigDecimal price) {
         this.model = model;
         this.type = type;
         this.inkColour = inkColour;
@@ -47,7 +47,7 @@ class Pen {
     public int hashCode() {
         int result = model.hashCode();
         result = result * 31 + type.hashCode();
-        result = result * 31 + inkColour;
+        result = result * 31 + inkColour.hashCode();
         result = result * 31 + price.hashCode();
         return result;
     }
@@ -55,12 +55,16 @@ class Pen {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Pen {\n")
-                .append("Model: " + model + "\n")
-                .append("Type: " + type + "\n")
-                .append("Colour: " + inkColour + "\n")
-                .append("Price: " + price)
-                .append("}");
-        return stringBuilder.toString();
+        String result = String.format("Model: %s, Type: %s, Colour: %s, Price: %s RUR", model,
+                type,
+                inkColour,
+                price);
+//        stringBuilder.append("Pen {\n")
+//                .append("Model: " + model + "\n")
+//                .append("Type: " + type + "\n")
+//                .append("Colour: " + inkColour + "\n")
+//                .append("Price: " + price)
+//                .append("}");
+        return result;
     }
 }
