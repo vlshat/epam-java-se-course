@@ -14,6 +14,9 @@ public class Notebook {
         notes = new Note[capacity];
     }
 
+    /**
+     * @param note
+     */
     public void add(Note note){
         if (pointer + 1 < notes.length){
             notes[pointer++] = note;
@@ -22,6 +25,10 @@ public class Notebook {
         }
     }
 
+    /**
+     *
+     * @param noteNumber - Expects number of note in notebook
+     */
     public void delete(int noteNumber){
 
         if (noteNumber - 1 != pointer){
@@ -36,6 +43,10 @@ public class Notebook {
         pointer -= 1;
     }
 
+    /**
+     * @param noteNumber
+     * @param text to insert in certain note
+     */
     public void edit(int noteNumber, String text){
         notes[noteNumber - 1].setText(text);
     }
@@ -49,6 +60,9 @@ public class Notebook {
     }
 
 
+    /**
+     * @return all notes as a string
+     */
     public String showAll(){
         StringBuilder builder = new StringBuilder();
 
