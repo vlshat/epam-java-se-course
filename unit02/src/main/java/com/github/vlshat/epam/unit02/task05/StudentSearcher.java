@@ -13,6 +13,11 @@ public class StudentSearcher {
         this.groups = groups;
     }
 
+    /**
+     * This method returns marks of certain student
+     * @param studentId
+     * @return - List of marks as a string
+     */
     public String getMarks(String studentId){
         StringBuilder marks = new StringBuilder();
 

@@ -15,6 +15,12 @@ public class Group {
         this.subject = subject;
     }
 
+
+    /**
+     * Adds student to the group
+     * @param student
+     * @param mark - mark that real number or not (it depends on subject)
+     */
     public void addStudent(Student student, Number mark) {
 
         if (!subject.markIsReal() && mark instanceof Double) {
@@ -25,6 +31,10 @@ public class Group {
 
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public boolean isStudentExists(String id) {
 
         for (Map.Entry<Student, Number> s : marks.entrySet()) {
@@ -37,6 +47,10 @@ public class Group {
         return false;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public Student getStudentById(String id){
 
         if (!isStudentExists(id))
@@ -48,9 +62,13 @@ public class Group {
             }
         }
 
-        throw new IllegalArgumentException("Iternal error");
+        throw new IllegalArgumentException("Internal error");
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public Number getMarkByStudentId(String id){
         if (!isStudentExists(id))
             throw new IllegalArgumentException("Such student doesn't exist");
@@ -58,6 +76,9 @@ public class Group {
         return marks.get(getStudentById(id));
     }
 
+    /**
+     * @return
+     */
     public Subject getSubjectName(){
         return subject;
     }
