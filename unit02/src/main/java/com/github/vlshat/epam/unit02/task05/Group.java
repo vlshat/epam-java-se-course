@@ -17,29 +17,48 @@ public class Group {
 
     public void addStudent(Student student, Number mark) {
 
-        if (!subject.markIsReal() && mark instanceof Double){
-            throw new IllegalArgumentException("Expected mark type: Integer, current: " + mark);
+        if (!subject.markIsReal() && mark instanceof Double) {
+            throw new IllegalArgumentException("Expected mark type: Integer, current mark: " + mark);
         } else {
             marks.put(student, mark);
         }
 
     }
 
-    public boolean isStudentExists(String name, String surname){
-        boolean isExists = false;
+    public boolean isStudentExists(String id) {
+
+        for (Map.Entry<Student, Number> s : marks.entrySet()) {
+
+            if (s.getKey().getSTUDENT_ID().equals(id)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public Student getStudentById(String id){
+
+        if (!isStudentExists(id))
+            throw new IllegalArgumentException("Such student doesn't exist");
 
         for (Map.Entry<Student, Number> s : marks.entrySet()){
-            isExists = (s.getKey().getName().equals(name)
-                    && s.getKey().getSurname().equals(surname));
-            if (isExists)
-                return true;
+            if (s.getKey().getSTUDENT_ID().equals(id)){
+                return s.getKey();
+            }
         }
 
-        return isExists;
+        throw new IllegalArgumentException("Iternal error");
     }
 
-    public boolean isStudentExists(Student student){
-        return marks.containsKey(student);
+    public Number getMarkByStudentId(String id){
+        if (!isStudentExists(id))
+            throw new IllegalArgumentException("Such student doesn't exist");
+
+        return marks.get(getStudentById(id));
     }
 
+    public Subject getSubjectName(){
+        return subject;
+    }
 }

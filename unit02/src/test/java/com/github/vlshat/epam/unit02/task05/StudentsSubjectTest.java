@@ -1,11 +1,13 @@
 package com.github.vlshat.epam.unit02.task05;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -15,31 +17,46 @@ import static org.junit.Assert.assertTrue;
  */
 public class StudentsSubjectTest {
 
-    @Test
-    public void test() throws Exception{
-        List<Group> groups = new ArrayList<>();
-        Student klaus = new Student("Klaus", "Cruspe");
+    List<Group> groups = new ArrayList<>();
+    Student lisa = new Student("Lisa", "Edelstein");
+    Student alex = new Student("Alex", "Flanders");
+    Student klaus = new Student("Klaus", "Cruspe");
+    Group mathGroup = new Group(Subject.MATH);
+    Group philosophyGroup = new Group(Subject.PHILOSOPHY);
+    Group algorithmsGroup = new Group(Subject.ALGORITHMS);
 
-        Group mathGroup = new Group(Subject.MATH);
+    @Before
+    public void init() {
         mathGroup.addStudent(klaus, 5);
-        mathGroup.addStudent(new Student("Alex", "Flanders"), 2);
-        mathGroup.addStudent(new Student("Lisa", "Edelstein"), 4);
+        mathGroup.addStudent(alex, 2);
+        mathGroup.addStudent(lisa, 4);
 
-        Group philosophyGroup = new Group(Subject.PHILOSOPHY);
-        philosophyGroup.addStudent(new Student("Lisa", "Edelstein"), 7.5);
-        philosophyGroup.addStudent(new Student("Alex", "Flanders"), 8.2);
+        philosophyGroup.addStudent(lisa, 7.5);
+        philosophyGroup.addStudent(alex, 8.2);
 
-        Group algorithmsGroup = new Group(Subject.ALGORITHMS);
-        algorithmsGroup.addStudent(new Student("Klaus", "Cruspe"), 5);
-        algorithmsGroup.addStudent(new Student("Alex", "Flanders"), 4);
-
+        algorithmsGroup.addStudent(klaus, 5);
+        algorithmsGroup.addStudent(alex, 4);
 
         groups.add(mathGroup);
         groups.add(philosophyGroup);
         groups.add(algorithmsGroup);
+    }
 
-        assertTrue(mathGroup.isStudentExists("Klaus", "Cruspe"));
+    @Test
+    public void testGroupStudent() throws Exception {
+        assertTrue(mathGroup.isStudentExists(klaus.getSTUDENT_ID()));
+        assertTrue(algorithmsGroup.isStudentExists(klaus.getSTUDENT_ID()));
+        assertFalse(philosophyGroup.isStudentExists(klaus.getSTUDENT_ID()));
+    }
 
-
+    @Test
+    public void testStudentSeracher() throws Exception{
+        StudentSearcher searcher = new StudentSearcher(groups);
+        String studentMarks = searcher.getMarks(klaus.getSTUDENT_ID());
+        StringBuilder expected = new StringBuilder();
+        expected.append(Subject.MATH).append(": ").append(5).append("\n")
+                .append(Subject.ALGORITHMS).append(": ").append(5).append("\n");
+        assertEquals(expected.toString(), studentMarks);
+        System.out.println(studentMarks);
     }
 }
