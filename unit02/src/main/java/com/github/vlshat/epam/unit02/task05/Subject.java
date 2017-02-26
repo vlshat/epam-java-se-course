@@ -4,10 +4,10 @@ package com.github.vlshat.epam.unit02.task05;
  * Created by wladislaw on 25.02.17.
  */
 public enum Subject {
-    MATH(true),
-    ALGORITHMS(true),
-    JAVA(false),
-    PHILOSOPHY(false);
+    MATH(false),
+    ALGORITHMS(false),
+    JAVA(true),
+    PHILOSOPHY(true);
 
     private boolean markIsReal;
 
@@ -15,7 +15,7 @@ public enum Subject {
         this.markIsReal = markIsReal;
     }
 
-    public boolean isMarkIsReal(){
+    public boolean markIsReal(){
         return markIsReal;
     }
 

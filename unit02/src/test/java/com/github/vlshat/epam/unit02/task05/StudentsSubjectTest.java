@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by wladislaw on 25.02.17.
@@ -33,11 +34,11 @@ public class StudentsSubjectTest {
         algorithmsGroup.addStudent(new Student("Alex", "Flanders"), 4);
 
 
-        groups.addAll(mathGroup,
-                philosophyGroup,
-                algorithmsGroup);
+        groups.add(mathGroup);
+        groups.add(philosophyGroup);
+        groups.add(algorithmsGroup);
 
-        assertEquals(mathGroup.getStudent("Klaus", "Cruspe"), klaus);
+        assertTrue(mathGroup.isStudentExists("Klaus", "Cruspe"));
 
 
     }
