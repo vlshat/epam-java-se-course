@@ -59,12 +59,7 @@ class Pen {
                 type,
                 inkColour,
                 price);
-//        stringBuilder.append("Pen {\n")
-//                .append("Model: " + model + "\n")
-//                .append("Type: " + type + "\n")
-//                .append("Colour: " + inkColour + "\n")
-//                .append("Price: " + price)
-//                .append("}");
+
         return result;
     }
 }

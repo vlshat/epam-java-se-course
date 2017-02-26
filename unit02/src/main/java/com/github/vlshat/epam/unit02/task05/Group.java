@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by wladislaw on 26.02.17.
  */
-public class Group {
+class Group {
 
     private Subject subject = Subject.MATH;
     private Map<Student, Number> marks = new HashMap<>();

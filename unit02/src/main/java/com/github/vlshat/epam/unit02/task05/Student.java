@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by wladislaw on 25.02.17.
  */
-public class Student {
+class Student {
 
     private final String STUDENT_ID;
     private String name;

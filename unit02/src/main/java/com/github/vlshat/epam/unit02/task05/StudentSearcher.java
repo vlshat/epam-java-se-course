@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by wladislaw on 26.02.17.
  */
-public class StudentSearcher {
+class StudentSearcher {
 
     private List<Group> groups;
 
