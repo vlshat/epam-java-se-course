@@ -12,6 +12,10 @@ public class CrazyLogger {
     private int count = 0;
 
 
+    /**
+     * Method adds new log message with local date and time.
+     * @param message
+     */
     public void addMessage(String message) {
 
         LocalDateTime time = LocalDateTime.now();
@@ -33,6 +37,10 @@ public class CrazyLogger {
         count += 1;
     }
 
+    /**
+     * Returns last message from log.
+     * @return
+     */
     public String getLastMessage() {
 
         if (builder.length() == 0)
@@ -41,6 +49,9 @@ public class CrazyLogger {
         return builder.substring(builder.lastIndexOf("\n") + 1);
     }
 
+    /**
+     * Removes last message if it exists.
+     */
     public void removeLastMessage() {
 
         if (count != 0){
@@ -55,7 +66,15 @@ public class CrazyLogger {
         return count;
     }
 
-    public String getByDate(String s) {
+
+    /**
+     * Expects instance of LocalDate. Returns all log messages on this day.
+     * @param date
+     * @return
+     */
+    public String getByDate(LocalDate date) {
+
+        String s = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
         if (builder.indexOf(s) != -1){
             int rightBound = builder.lastIndexOf("\n", builder.lastIndexOf(s));
             if (rightBound != -1){

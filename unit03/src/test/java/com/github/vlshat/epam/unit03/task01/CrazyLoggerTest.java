@@ -29,18 +29,15 @@ public class CrazyLoggerTest {
     public void testSearchMethods() throws Exception{
 
         LocalDate date = LocalDate.now();
-        String time1 = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
-        String time2 = date.minusDays(1).getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
 
         CrazyLogger logger = new CrazyLogger();
         logger.addMessage("blah");
         logger.addMessage("blah2");
-        logger.addMessage("blah3");
 
-        String log = logger.getByDate(time1);
+        String log = logger.getByDate(LocalDate.now());
         assertTrue(log.contains("blah"));
         assertTrue(log.contains("blah2"));
-        assertTrue(logger.getByDate(time2).equals("no messages"));
+        assertTrue(logger.getByDate(LocalDate.now().minusDays(1)).equals("no messages"));
 
     }
 
