@@ -43,20 +43,20 @@ public class StudentsSubjectTest {
     }
 
     @Test
-    public void testGroupStudent() throws Exception {
+    public void testThatStudentsAreAddedToGroups() throws Exception {
         assertTrue(mathGroup.isStudentExists(klaus.getSTUDENT_ID()));
         assertTrue(algorithmsGroup.isStudentExists(klaus.getSTUDENT_ID()));
         assertFalse(philosophyGroup.isStudentExists(klaus.getSTUDENT_ID()));
     }
 
     @Test
-    public void testStudentSeracher() throws Exception{
-        StudentSearcher searcher = new StudentSearcher(groups);
-        String studentMarks = searcher.getMarks(klaus.getSTUDENT_ID());
+    public void testThatMethodReturnsStudentMarks() throws Exception{
+
+        String studentMarks = StudentAnalyzer.getMarks(klaus.getSTUDENT_ID(), groups);
         StringBuilder expected = new StringBuilder();
         expected.append(Subject.MATH).append(": ").append(5).append("\n")
                 .append(Subject.ALGORITHMS).append(": ").append(5).append("\n");
         assertEquals(expected.toString(), studentMarks);
-        System.out.println(studentMarks);z
+        System.out.println(studentMarks);
     }
 }

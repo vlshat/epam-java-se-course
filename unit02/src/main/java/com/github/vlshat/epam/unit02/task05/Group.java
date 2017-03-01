@@ -33,7 +33,6 @@ class Group {
             marks.put(student.getSTUDENT_ID(), mark);
             students.put(student.getSTUDENT_ID(), student);
         }
-
     }
 
     /**

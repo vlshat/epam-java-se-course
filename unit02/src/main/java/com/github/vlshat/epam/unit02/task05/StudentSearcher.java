@@ -5,12 +5,9 @@ import java.util.List;
 /**
  * Created by wladislaw on 26.02.17.
  */
-class StudentSearcher {
+class StudentAnalyzer {
 
-    private List<Group> groups;
-
-    public StudentSearcher(List<Group> groups){
-        this.groups = groups;
+    private StudentAnalyzer(){
     }
 
     /**
@@ -18,7 +15,8 @@ class StudentSearcher {
      * @param studentId
      * @return - List of marks as a string
      */
-    public String getMarks(String studentId){
+    public static String getMarks(String studentId, List<Group> groups){
+
         StringBuilder marks = new StringBuilder();
 
         for (Group group : groups){
