@@ -7,25 +7,35 @@ import java.util.List;
  */
 class StudentAnalyzer {
 
-    private StudentAnalyzer(){
+    private StudentAnalyzer() {
     }
 
     /**
      * This method returns marks of certain student
+     *
      * @param studentId
      * @return - List of marks as a string
      */
-    public static String getMarks(String studentId, List<Group> groups){
+    public static String getMarks(String studentId, List<Group> groups) {
 
         StringBuilder marks = new StringBuilder();
 
-        for (Group group : groups){
-            if (group.isStudentExists(studentId)){
+        for (Group group : groups) {
+            if (group.isStudentExists(studentId)) {
                 marks.append(group.getSubjectName() + ": ");
                 marks.append(group.getMarkByStudentId(studentId) + "\n");
             }
         }
 
         return marks.toString();
+    }
+
+    public static String getTopStudents(List<Group> groups) {
+        StringBuilder result = new StringBuilder();
+        for (Group group : groups) {
+            result.append(group.getTopStudent())
+                    .append("\n");
+        }
+        return result.toString();
     }
 }

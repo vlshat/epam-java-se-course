@@ -50,7 +50,7 @@ public class StudentsSubjectTest {
     }
 
     @Test
-    public void testThatMethodReturnsStudentMarks() throws Exception{
+    public void testThatMethodReturnsStudentMarks() throws Exception {
 
         String studentMarks = StudentAnalyzer.getMarks(klaus.getSTUDENT_ID(), groups);
         StringBuilder expected = new StringBuilder();
@@ -58,5 +58,35 @@ public class StudentsSubjectTest {
                 .append(Subject.ALGORITHMS).append(": ").append(5).append("\n");
         assertEquals(expected.toString(), studentMarks);
         System.out.println(studentMarks);
+    }
+
+    @Test
+    public void testGetTopStudents() throws Exception {
+
+        String studentMarks = StudentAnalyzer.getTopStudents(groups);
+        StringBuilder expected =
+                new StringBuilder().append("MATH: ")
+                        .append(klaus.getName())
+                        .append(" ")
+                        .append(klaus.getSurname())
+                        .append(" ")
+                        .append(5)
+                        .append("\n");
+        expected.append("PHILOSOPHY: ")
+                .append(alex.getName())
+                .append(" ")
+                .append(alex.getSurname())
+                .append(" ")
+                .append(8.2)
+                .append("\n");
+        expected.append("ALGORITHMS: ")
+                .append(klaus.getName())
+                .append(" ")
+                .append(klaus.getSurname())
+                .append(" ")
+                .append(5)
+                .append("\n");
+        assertEquals(expected.toString(), studentMarks);
+
     }
 }

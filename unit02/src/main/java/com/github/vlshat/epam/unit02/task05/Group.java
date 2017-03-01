@@ -1,5 +1,9 @@
 package com.github.vlshat.epam.unit02.task05;
 
+import com.github.vlshat.epam.unit02.task05.markcomparators.DoubleMarkComparator;
+import com.github.vlshat.epam.unit02.task05.markcomparators.IntegerMarkComparator;
+
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,10 +71,57 @@ class Group {
         return marks.get(id);
     }
 
+    public String getTopStudent(){
+
+        Comparator markComparator;
+        Number highMark;
+
+        if (subject.markIsReal()){
+            markComparator = new DoubleMarkComparator();
+            highMark = -1d;
+        } else {
+            markComparator = new IntegerMarkComparator();
+            highMark = -1;
+        }
+
+        String studentId = null;
+
+        for (Map.Entry<String, Number> mark : marks.entrySet()){
+
+            if (markComparator.compare(highMark, mark.getValue()) == -1){
+                studentId = mark.getKey();
+                highMark = mark.getValue();
+            }
+        }
+
+        return new StringBuilder().append(subject)
+                .append(": ")
+                .append(students.get(studentId).getName())
+                .append(" ")
+                .append(students.get(studentId).getSurname())
+                .append(" ")
+                .append(highMark).toString();
+    }
+
     /**
      * @return
      */
     public Subject getSubjectName(){
         return subject;
     }
+
+    public Map<String, Number> getMarks() {
+        Map<String, Number> copy = new HashMap<>();
+        copy.putAll(marks);
+        return copy;
+    }
+
+    public Map<String, Student> getStudents() {
+        Map<String, Student> copy = new HashMap<>();
+        copy.putAll(students);
+        return copy;
+    }
+
+
+
 }
