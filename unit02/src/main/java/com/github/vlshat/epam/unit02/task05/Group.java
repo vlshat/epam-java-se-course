@@ -8,7 +8,7 @@ import java.util.Map;
  */
 class Group {
 
-    private Subject subject = Subject.MATH;
+    private Subject subject;
     private Map<Student, Number> marks = new HashMap<>();
 
     public Group(Subject subject) {
@@ -22,7 +22,8 @@ class Group {
      * @param mark - mark that real number or not (it depends on subject)
      */
     public void addStudent(Student student, Number mark) {
-
+        if (student == null || mark == null)
+            throw new IllegalArgumentException();
         if (!subject.markIsReal() && mark instanceof Double) {
             throw new IllegalArgumentException("Expected mark type: Integer, current mark: " + mark);
         } else {

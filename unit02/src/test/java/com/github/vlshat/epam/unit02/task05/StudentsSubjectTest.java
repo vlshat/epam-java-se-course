@@ -57,6 +57,6 @@ public class StudentsSubjectTest {
         expected.append(Subject.MATH).append(": ").append(5).append("\n")
                 .append(Subject.ALGORITHMS).append(": ").append(5).append("\n");
         assertEquals(expected.toString(), studentMarks);
-        System.out.println(studentMarks);
+        System.out.println(studentMarks);z
     }
 }
