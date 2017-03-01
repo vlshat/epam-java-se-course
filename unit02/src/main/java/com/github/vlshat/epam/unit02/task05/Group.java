@@ -9,7 +9,8 @@ import java.util.Map;
 class Group {
 
     private Subject subject;
-    private Map<Student, Number> marks = new HashMap<>();
+    private Map<String, Number> marks = new HashMap<>();
+    private Map<String, Student> students = new HashMap<>();
 
     public Group(Subject subject) {
         this.subject = subject;
@@ -22,12 +23,15 @@ class Group {
      * @param mark - mark that real number or not (it depends on subject)
      */
     public void addStudent(Student student, Number mark) {
+
         if (student == null || mark == null)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Arguments can't be null");
+
         if (!subject.markIsReal() && mark instanceof Double) {
             throw new IllegalArgumentException("Expected mark type: Integer, current mark: " + mark);
         } else {
-            marks.put(student, mark);
+            marks.put(student.getSTUDENT_ID(), mark);
+            students.put(student.getSTUDENT_ID(), student);
         }
 
     }
@@ -38,14 +42,7 @@ class Group {
      */
     public boolean isStudentExists(String id) {
 
-        for (Map.Entry<Student, Number> s : marks.entrySet()) {
-
-            if (s.getKey().getSTUDENT_ID().equals(id)) {
-                return true;
-            }
-
-        }
-        return false;
+        return students.containsKey(id);
     }
 
     /**
@@ -57,13 +54,7 @@ class Group {
         if (!isStudentExists(id))
             throw new IllegalArgumentException("Such student doesn't exist");
 
-        for (Map.Entry<Student, Number> s : marks.entrySet()){
-            if (s.getKey().getSTUDENT_ID().equals(id)){
-                return s.getKey();
-            }
-        }
-
-        throw new IllegalArgumentException("Internal error");
+        return students.get(id);
     }
 
     /**
@@ -74,7 +65,7 @@ class Group {
         if (!isStudentExists(id))
             throw new IllegalArgumentException("Such student doesn't exist");
 
-        return marks.get(getStudentById(id));
+        return marks.get(id);
     }
 
     /**
