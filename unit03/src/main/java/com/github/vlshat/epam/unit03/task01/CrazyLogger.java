@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class CrazyLogger {
 
     private StringBuilder builder = new StringBuilder();
+    private final String TEXT_NO_MESSAGES = "no messages";
     private int count = 0;
 
 
@@ -47,7 +48,7 @@ public class CrazyLogger {
     public String getLastMessage() {
 
         if (builder.length() == 0)
-            return "logger is empty";
+            return TEXT_NO_MESSAGES;
 
         return builder.substring(builder.lastIndexOf("\n") + 1);
     }
@@ -61,7 +62,7 @@ public class CrazyLogger {
             builder.delete(builder.lastIndexOf("\n"), builder.length());
             count -= 1;
         } else {
-            throw new IllegalArgumentException("no messages in logger");
+            throw new IllegalArgumentException(TEXT_NO_MESSAGES);
         }
     }
 
@@ -87,7 +88,7 @@ public class CrazyLogger {
             return builder.substring(builder.indexOf(s), rightBound);
 
         } else {
-            return "no messages";
+            return TEXT_NO_MESSAGES;
         }
     }
 
@@ -97,6 +98,45 @@ public class CrazyLogger {
      * @return
      */
     public String getAllMessages() {
+        if (builder.length() == 0){
+            return TEXT_NO_MESSAGES;
+        }
         return builder.toString();
+    }
+
+    /**
+     * Returns all messages where mentioned fragment
+     * @param fragment
+     * @return
+     */
+    public String getWhereMentioned(String fragment) {
+
+        StringBuilder result = new StringBuilder();
+        int leftBound = 0;
+
+        if (builder.indexOf(fragment) == -1)
+            return TEXT_NO_MESSAGES;
+
+        while ((leftBound = builder.indexOf(fragment, leftBound)) != -1){
+            result.append(builder.substring(getStringStartPosition(leftBound),
+                    builder.indexOf(";", leftBound) + 1));
+            leftBound = builder.indexOf(";", leftBound);
+        }
+
+        return result.toString();
+    }
+
+    private int getStringStartPosition(int point) {
+
+        int index = 1;
+
+        while (true){
+            if (builder.indexOf("\n", index) >= point || builder.indexOf("\n", index) == -1){
+                break;
+            }
+
+            index = builder.indexOf("\n", index) + 1;
+        }
+        return index - 1;
     }
 }

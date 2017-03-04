@@ -13,20 +13,22 @@ import static org.junit.Assert.*;
 public class CrazyLoggerTest {
 
     @Test
-    public void testLoggerBaseMethods() throws Exception{
+    public void testThatLoggerAddsAndDeletesMessages() throws Exception {
         CrazyLogger logger = new CrazyLogger();
         String message = "testing last message";
-        logger.addMessage(message);
 
+        assertEquals("no messages", logger.getLastMessage());
+        assertEquals("no messages", logger.getAllMessages());
+        logger.addMessage(message);
         assertTrue(logger.getLastMessage().contains(message));
         assertTrue(logger.getMessagesCount() == 1);
         logger.removeLastMessage();
-        assertEquals("logger is empty", logger.getLastMessage());
+        assertEquals("no messages", logger.getLastMessage());
         assertTrue(logger.getMessagesCount() == 0);
     }
 
     @Test
-    public void testSearchMethods() throws Exception{
+    public void testLoggerSearchMethods() throws Exception {
 
         LocalDate date = LocalDate.now();
 
@@ -38,6 +40,27 @@ public class CrazyLoggerTest {
         assertTrue(log.contains("blah"));
         assertTrue(log.contains("blah2"));
         assertTrue(logger.getByDate(LocalDate.now().minusDays(1)).equals("no messages"));
+
+    }
+
+    @Test
+    public void testWhereMentionedMethod() throws Exception {
+        CrazyLogger logger = new CrazyLogger();
+        String expected1 = "blah1";
+        String expected2 = "blah2";
+        String expected3 = "blah3";
+
+        logger.addMessage(expected1);
+        logger.addMessage(expected2);
+        logger.addMessage("wowowow");
+        logger.addMessage(expected3);
+
+        String log = logger.getWhereMentioned("blah");
+        System.out.println(logger.getAllMessages());
+        System.out.println(log);
+
+        assertTrue(log.contains(expected1) &&
+                log.contains(expected2) && log.contains(expected3));
 
     }
 
