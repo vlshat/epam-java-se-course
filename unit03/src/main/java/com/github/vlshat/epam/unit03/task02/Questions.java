@@ -69,7 +69,7 @@ public class Questions {
 
     public String getAnswer(int number) {
 
-        if (number < 0 || number < answers.size())
+        if (number < 0 || number > answers.size())
             throw new IllegalArgumentException("No such answer");
 
         return bundle.getString(answers.get(number - 1));
