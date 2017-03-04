@@ -37,9 +37,5 @@ ehthumbs.db
 Thumbs.db
 #Directories#
 #####################
-unit01/.idea/
-unit02/.idea/
-unit03/.idea/
-unit01/java-se-course.iml
-unit02/unit02.iml
-unit03/unit03.iml
+/**/.idea/
+/**/*.iml
