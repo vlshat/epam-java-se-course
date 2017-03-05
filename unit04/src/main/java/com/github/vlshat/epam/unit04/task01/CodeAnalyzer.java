@@ -20,17 +20,17 @@ public class CodeAnalyzer {
 
         Map<String, Integer> base = getBase();
 
-        while (fileInputStream.available() > 0){
+        while (fileInputStream.available() > 0) {
 
             int symbol = fileInputStream.read();
 
-            if (symbol >= 97 && symbol <= 122){
+            if (symbol >= 97 && symbol <= 122) {
                 builder.append((char) symbol);
             } else {
 
                 String word = builder.toString();
 
-                if (base.containsKey(word)){
+                if (base.containsKey(word)) {
                     base.put(word, base.get(word) + 1);
                 }
 
@@ -43,9 +43,9 @@ public class CodeAnalyzer {
         FileOutputStream fileOutputStream =
                 new FileOutputStream("src/main/java/com/github/vlshat/epam/unit04/task01/result.unit04result");
 
-        for (Map.Entry<String, Integer> m : base.entrySet()){
-            if (m.getValue() != 0){
-                fileOutputStream.write((m.getKey()+ ":" + m.getValue() + "\n").getBytes());
+        for (Map.Entry<String, Integer> m : base.entrySet()) {
+            if (m.getValue() != 0) {
+                fileOutputStream.write((m.getKey() + ":" + m.getValue() + "\n").getBytes());
             }
         }
 
@@ -53,7 +53,7 @@ public class CodeAnalyzer {
 
     }
 
-    public static Map<String, Integer> getBase(){
+    public static Map<String, Integer> getBase() {
         Map<String, Integer> base = new HashMap<>();
 
         base.put("byte", 0);

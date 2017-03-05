@@ -13,6 +13,10 @@ public class Actor implements Serializable{
     private String surname;
 
     public Actor(String name, String surname) {
+
+        if (name == null || surname == null)
+            throw new IllegalArgumentException("Arguments can not be null");
+
         this.name = name;
         this.surname = surname;
     }

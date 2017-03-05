@@ -10,12 +10,12 @@ public class ReadWriteUtfFile {
     public static void main(String[] args) throws IOException {
 
         InputStreamReader reader = new InputStreamReader(
-                        new FileInputStream("text.unit04result"), "UTF8");
+                new FileInputStream("text.unit04result"), "UTF8");
 
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                 new FileOutputStream("test2.unit04result"), "UTF16");
 
-        while (reader.ready()){
+        while (reader.ready()) {
             outputStreamWriter.write(reader.read());
         }
 

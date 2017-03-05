@@ -16,6 +16,7 @@ public class FilmCollection implements Serializable{
     public void addFilm(Film film){
         if (films.contains(film))
             throw new IllegalArgumentException("Film already in this collection");
+        films.add(film);
     }
 
     public String getFilmsInformation(){

@@ -13,10 +13,13 @@ public class Film implements Serializable{
 
     private String title;
     private List<Actor> cast = new ArrayList<>();
-    private String year;
+    private int year;
     private String genre;
 
-    public Film(String title, String year, String genre) {
+    public Film(String title, int year, String genre) {
+
+        if (title == null || genre == null)
+            throw new IllegalArgumentException("Arguments can not be null");
         this.title = title;
         this.year = year;
         this.genre = genre;
@@ -35,6 +38,6 @@ public class Film implements Serializable{
     }
 
     public String toString(){
-        return String.format("%s, genre: %s, year: %s", title, genre, year);
+        return String.format("%s, genre: %s, year: %d", title, genre, year);
     }
 }
