@@ -53,7 +53,7 @@ public class CodeAnalyzer {
 
     }
 
-    private static Map<String, Integer> getBase(){
+    public static Map<String, Integer> getBase(){
         Map<String, Integer> base = new HashMap<>();
 
         base.put("byte", 0);
