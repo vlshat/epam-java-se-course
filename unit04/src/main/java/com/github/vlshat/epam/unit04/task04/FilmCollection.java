@@ -39,11 +39,14 @@ public class FilmCollection implements Serializable{
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(
                 new FileOutputStream(COLLECTION_ID + ".unit04result"));
         objectOutputStream.writeObject(this);
+        objectOutputStream.close();
     }
 
     public static FilmCollection loadCollectionFormFile(String fileName) throws IOException, ClassNotFoundException {
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName + ".unit04result"));
-        return (FilmCollection) objectInputStream.readObject();
+        FilmCollection filmCollection = (FilmCollection) objectInputStream.readObject();
+        objectInputStream.close();
+        return filmCollection;
     }
 
     @Override
