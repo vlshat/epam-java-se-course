@@ -23,21 +23,26 @@ public class Questions {
     }
 
     private void initBundle() {
+        
         System.out.println("Choose language:");
         System.out.println("1. English");
         System.out.println("2. Russian");
         int choice = scanner.nextInt();
 
-        if (choice == 1) {
-            bundle = ResourceBundle.getBundle("question", Locale.ENGLISH);
-        } else if (choice == 2) {
-            bundle = ResourceBundle.getBundle("question", new Locale("ru"));
-        } else {
-            throw new IllegalArgumentException("Such option doesn't exist");
+        switch (choice){
+            case 1:
+                bundle = ResourceBundle.getBundle("question", Locale.ENGLISH);
+                break;
+            case 2:
+                bundle = ResourceBundle.getBundle("question", new Locale("ru"));
+                break;
+            default:
+                throw new IllegalArgumentException("Such option doesn't exist");
         }
     }
 
     private void getKeys() {
+
         Enumeration<String> k = bundle.getKeys();
 
         while (k.hasMoreElements()) {
