@@ -23,7 +23,7 @@ public class Questions {
     }
 
     private void initBundle() {
-        
+
         System.out.println("Choose language:");
         System.out.println("1. English");
         System.out.println("2. Russian");
