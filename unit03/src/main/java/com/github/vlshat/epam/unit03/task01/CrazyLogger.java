@@ -11,8 +11,6 @@ public class CrazyLogger {
     private StringBuilder builder = new StringBuilder();
     private final String TEXT_NO_MESSAGES = "no messages";
     private int count = 0;
-
-
     /**
      * Method adds new log message with local date and time.
      *
@@ -21,7 +19,6 @@ public class CrazyLogger {
     public void addMessage(String message) {
 
         LocalDateTime time = LocalDateTime.now();
-
 
         builder.append("\n");
 

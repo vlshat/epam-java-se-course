@@ -55,7 +55,6 @@ public class Questions {
         int number = 1;
         StringBuilder builder = new StringBuilder();
 
-
         for (String q : questions) {
             builder.append(number)
                     .append(". ")
