@@ -2,6 +2,7 @@ package com.github.vlshat.epam.unit03.task01;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by wladislaw on 27.02.17.
@@ -21,16 +22,10 @@ public class CrazyLogger {
         LocalDateTime time = LocalDateTime.now();
 
         builder.append("\n");
+        //заменить на форматер
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY : HH-mm");
 
-        builder.append(time.getDayOfMonth())
-                .append("-")
-                .append(time.getMonthValue())
-                .append("-")
-                .append(time.getYear())
-                .append(" : ")
-                .append(time.getHour())
-                .append("-")
-                .append(time.getMinute())
+        builder.append(formatter.format(time))
                 .append(" - ")
                 .append(message)
                 .append(";");
@@ -76,7 +71,9 @@ public class CrazyLogger {
      */
     public String getByDate(LocalDate date) {
 
-        String s = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+        String s = formatter.format(date);
+
         if (builder.indexOf(s) != -1) {
             int rightBound = builder.lastIndexOf("\n", builder.lastIndexOf(s));
             if (rightBound != -1) {

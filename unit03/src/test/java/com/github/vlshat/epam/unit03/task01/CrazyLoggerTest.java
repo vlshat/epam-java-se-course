@@ -28,7 +28,7 @@ public class CrazyLoggerTest {
     }
 
     @Test
-    public void testLoggerSearchMethods() throws Exception {
+    public void testLoggerSearchByDateMethod() throws Exception {
 
         LocalDate date = LocalDate.now();
 
@@ -56,8 +56,6 @@ public class CrazyLoggerTest {
         logger.addMessage(expected3);
 
         String log = logger.getWhereMentioned("blah");
-        System.out.println(logger.getAllMessages());
-        System.out.println(log);
 
         assertTrue(log.contains(expected1) &&
                 log.contains(expected2) && log.contains(expected3));
