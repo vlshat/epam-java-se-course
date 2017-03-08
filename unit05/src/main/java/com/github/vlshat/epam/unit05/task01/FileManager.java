@@ -1,31 +1,52 @@
 package com.github.vlshat.epam.unit05.task01;
 
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.SecureDirectoryStream;
 
+import java.io.*;
 
+/**
+ * Created by vladislav on 08.03.17.
+ */
 public class FileManager {
 
-    private String currentPath = "/";
+    //private String currentPath = "";
+    private StringBuilder currentPath = new StringBuilder(new File("").getAbsolutePath());
+    private String fileSeparator = System.getProperty("file.separator");
 
     public String pwd(){
-        return null;
+        return currentPath.toString();
     }
 
-    public String cd(String dir){
-        return null;
+
+    public void cd(String dir){
+        if (new File(currentPath.toString() + fileSeparator + dir).exists()){
+            currentPath.append(fileSeparator).append(dir);
+        } else {
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                System.out.println("such directory doesn't exist");
+            }
+        }
     }
 
-    public String cdB(){
-        return null;
+    public void cdB(){
+        currentPath.delete(currentPath.lastIndexOf(fileSeparator), currentPath.length() - 1);
     }
 
     public String ls(){
-        return null;
+        File file = new File(currentPath.toString());
+        String[] filesAndDirectories = file.list();
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < filesAndDirectories.length; i++){
+            result.append(filesAndDirectories[i]);
+            result.append("\n");
+        }
+        result.deleteCharAt(result.length() - 1);
+        return result.toString();
     }
 
     public String cat(String fileName){
+
         return null;
     }
 
