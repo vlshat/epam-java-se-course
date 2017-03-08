@@ -2,24 +2,34 @@ package com.github.vlshat.epam.unit05.task01;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * Created by vladislav on 08.03.17.
  */
 public class FileManager {
 
-    //private String currentPath = "";
-    private StringBuilder currentPath = new StringBuilder(new File("").getAbsolutePath());
     private String fileSeparator = System.getProperty("file.separator");
+    private StringBuilder currentPath = new StringBuilder(new File("").getAbsolutePath() + fileSeparator);
 
+    /**
+     * Returns current directory
+     * @return
+     */
     public String pwd(){
         return currentPath.toString();
     }
 
 
+    /**
+     *
+     * @param dir -
+     */
     public void cd(String dir){
-        if (new File(currentPath.toString() + fileSeparator + dir).exists()){
-            currentPath.append(fileSeparator).append(dir);
+        if (new File(currentPath.toString() + dir).exists()){
+            currentPath.append(dir).append(fileSeparator);
         } else {
             try {
                 throw new FileNotFoundException();
@@ -29,10 +39,25 @@ public class FileManager {
         }
     }
 
+    /**
+     * Returns to the previous directory.
+     */
     public void cdB(){
-        currentPath.delete(currentPath.lastIndexOf(fileSeparator), currentPath.length());
+        if (currentPath.lastIndexOf(fileSeparator) == currentPath.indexOf(fileSeparator)){
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            currentPath.deleteCharAt(currentPath.length() - 1);
+            currentPath.delete(currentPath.lastIndexOf(fileSeparator) + 1, currentPath.length());
+        }
     }
 
+    /**
+     * @return list of files and directories
+     */
     public String ls(){
         File file = new File(currentPath.toString());
         String[] filesAndDirectories = file.list();
@@ -45,9 +70,13 @@ public class FileManager {
         return result.toString();
     }
 
+    /**
+     * @param fileName
+     * @return
+     */
     public String cat(String fileName){
         try {
-            FileReader fileReader = new FileReader(currentPath + fileSeparator + fileName);
+            FileReader fileReader = new FileReader(currentPath + fileName);
             BufferedReader reader = new BufferedReader(fileReader);
             StringBuilder result = new StringBuilder();
 
@@ -72,15 +101,92 @@ public class FileManager {
         return "Something went bad";
     }
 
-    public String edit(String fileName, String text){
-        return null;
-    }
-
+    /**
+     * Creates new file with text
+     * @param fileName
+     * @param text
+     */
     public void touch(String fileName, String text){
-
+        File file = new File(currentPath + fileName);
+        if (file.exists()){
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                System.out.println("File already exists");
+            }
+        } else {
+            try {
+                FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
+                fileWriter.write(text);
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void delete(String fileName){
+    public void touch(String fileName){
+        File file = new File(currentPath + fileName);
+        if (file.exists()){
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                System.out.println("File already exists");
+            }
+        } else {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    /**
+     * Deletes file from current directory
+     * @param fileName
+     */
+    public void delete(String fileName){
+        File file = new File(currentPath + fileName);
+
+        if (!file.exists()){
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                System.out.println("Such file doesn't exist");
+            }
+        } else {
+            file.delete();
+        }
+    }
+
+    /**
+     * Creates new directory in current path
+     * @param dirName
+     */
+    public void mkdir(String dirName){
+        File file = new File(currentPath + fileSeparator + dirName);
+        if (file.exists()){
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException e) {
+                System.out.println("Such directory exists");
+            }
+        } else {
+            file.mkdir();
+        }
+    }
+
+    /**
+     * Adds a text at the end of the file
+     * @param fileName
+     * @param text
+     */
+    public void addTextToFile(String fileName, String text){
+        try {
+            Files.write(Paths.get(currentPath + fileName), text.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
