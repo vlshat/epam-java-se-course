@@ -30,7 +30,7 @@ public class FileManager {
     }
 
     public void cdB(){
-        currentPath.delete(currentPath.lastIndexOf(fileSeparator), currentPath.length() - 1);
+        currentPath.delete(currentPath.lastIndexOf(fileSeparator), currentPath.length());
     }
 
     public String ls(){
@@ -46,8 +46,30 @@ public class FileManager {
     }
 
     public String cat(String fileName){
+        try {
+            FileReader fileReader = new FileReader(currentPath + fileSeparator + fileName);
+            BufferedReader reader = new BufferedReader(fileReader);
+            StringBuilder result = new StringBuilder();
 
-        return null;
+            while (true){
+                String s = reader.readLine();
+
+                if (s == null)
+                    break;
+
+                result.append(s).append("\n");
+            }
+
+            result.deleteCharAt(result.length() - 1);
+
+            return result.toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "Something went bad";
     }
 
     public String edit(String fileName, String text){
