@@ -1,6 +1,9 @@
 package com.github.vlshat.epam.unit05.task01;
 
 
+import com.github.vlshat.epam.unit05.task01.Exceptions.DirectoryNotFoundException;
+import com.github.vlshat.epam.unit05.task01.Exceptions.FileExistsException;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +21,7 @@ public class FileManager {
      * Returns current directory
      * @return
      */
-    public String pwd(){
+    public String printWorkingDirectory(){
         return currentPath.toString();
     }
 
@@ -26,16 +29,13 @@ public class FileManager {
     /**
      *
      * @param dir -
+     * @throws DirectoryNotFoundException
      */
-    public void cd(String dir){
+    public void changeDirectory(String dir) throws DirectoryNotFoundException {
         if (new File(currentPath.toString() + dir).exists()){
             currentPath.append(dir).append(fileSeparator);
         } else {
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("such directory doesn't exist");
-            }
+            throw new DirectoryNotFoundException("Such directory doesn't exist");
         }
     }
 
@@ -58,15 +58,20 @@ public class FileManager {
     /**
      * @return list of files and directories
      */
-    public String ls(){
+    public String listFilesAndDirectories(){
+
         File file = new File(currentPath.toString());
         String[] filesAndDirectories = file.list();
+
         StringBuilder result = new StringBuilder();
+
         for (int i = 0; i < filesAndDirectories.length; i++){
             result.append(filesAndDirectories[i]);
             result.append("\n");
         }
+
         result.deleteCharAt(result.length() - 1);
+
         return result.toString();
     }
 
@@ -74,11 +79,12 @@ public class FileManager {
      * @param fileName
      * @return
      */
-    public String cat(String fileName){
+    public String getFile(String fileName){
+
+        StringBuilder result = new StringBuilder();
+
         try {
-            FileReader fileReader = new FileReader(currentPath + fileName);
-            BufferedReader reader = new BufferedReader(fileReader);
-            StringBuilder result = new StringBuilder();
+            BufferedReader reader = new BufferedReader(new FileReader(currentPath + fileName));
 
             while (true){
                 String s = reader.readLine();
@@ -92,28 +98,24 @@ public class FileManager {
             result.deleteCharAt(result.length() - 1);
 
             return result.toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return "Something went bad";
+        } catch (FileNotFoundException e) {
+            return "Such file doesn't exist";
+        } catch (IOException e) {
+            return result.toString();
+        }
     }
 
     /**
      * Creates new file with text
      * @param fileName
      * @param text
+     * @throws FileExistsException
      */
-    public void touch(String fileName, String text){
+    public void createFile(String fileName, String text) throws FileExistsException {
         File file = new File(currentPath + fileName);
         if (file.exists()){
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("File already exists");
-            }
+            throw new FileExistsException("File already exists");
         } else {
             try {
                 FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
@@ -125,14 +127,15 @@ public class FileManager {
         }
     }
 
-    public void touch(String fileName){
+
+    /**
+     * @param fileName
+     * @throws FileExistsException
+     */
+    public void createFile(String fileName) throws FileExistsException {
         File file = new File(currentPath + fileName);
         if (file.exists()){
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("File already exists");
-            }
+            throw new FileExistsException("Such file already exists");
         } else {
             try {
                 file.createNewFile();
@@ -142,36 +145,32 @@ public class FileManager {
         }
     }
 
+
     /**
      * Deletes file from current directory
      * @param fileName
+     * @throws FileNotFoundException
      */
-    public void delete(String fileName){
+    public void delete(String fileName) throws FileNotFoundException {
+
         File file = new File(currentPath + fileName);
 
         if (!file.exists()){
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("Such file doesn't exist");
-            }
+            throw new FileNotFoundException("Such file already exists");
         } else {
             file.delete();
         }
     }
 
+
     /**
-     * Creates new directory in current path
      * @param dirName
+     * @throws FileExistsException
      */
-    public void mkdir(String dirName){
+    public void createDirectory(String dirName) throws FileExistsException {
         File file = new File(currentPath + fileSeparator + dirName);
         if (file.exists()){
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("Such directory exists");
-            }
+            throw new FileExistsException("Such directory exists");
         } else {
             file.mkdir();
         }

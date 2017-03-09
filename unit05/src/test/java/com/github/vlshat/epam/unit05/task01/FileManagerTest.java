@@ -1,8 +1,5 @@
 package com.github.vlshat.epam.unit05.task01;
 
-import org.junit.*;
-import org.junit.Test;
-
 import java.io.File;
 
 import static org.junit.Assert.*;
@@ -16,7 +13,7 @@ public class FileManagerTest {
     public void testPwd() throws Exception {
         FileManager fileManager = new FileManager();
         File file = new File("");
-        assertEquals(file.getAbsolutePath() + "/", fileManager.pwd());
+        assertEquals(file.getAbsolutePath() + System.getProperty("file.separator"), fileManager.printWorkingDirectory());
     }
 
     @org.junit.Test
@@ -24,11 +21,11 @@ public class FileManagerTest {
         FileManager fileManager = new FileManager();
         File file = new File("ddir");
         file.mkdir();
-        fileManager.cd("ddir");
-        assertEquals(file.getAbsolutePath() + "/", fileManager.pwd());
+        fileManager.changeDirectory("ddir");
+        assertEquals(file.getAbsolutePath() + System.getProperty("file.separator"), fileManager.printWorkingDirectory());
 
         fileManager.cdB();
-        assertEquals(new File("").getAbsolutePath() + "/", fileManager.pwd());
+        assertEquals(new File("").getAbsolutePath() + System.getProperty("file.separator"), fileManager.printWorkingDirectory());
         file.delete();
     }
 }
