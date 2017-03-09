@@ -28,7 +28,7 @@ public class FileManager {
 
     /**
      *
-     * @param dir -
+     * @param dir
      * @throws DirectoryNotFoundException
      */
     public void changeDirectory(String dir) throws DirectoryNotFoundException {
@@ -41,14 +41,11 @@ public class FileManager {
 
     /**
      * Returns to the previous directory.
+     * @throws DirectoryNotFoundException
      */
-    public void cdB(){
+    public void goToThePreviousDirectory() throws DirectoryNotFoundException {
         if (currentPath.lastIndexOf(fileSeparator) == currentPath.indexOf(fileSeparator)){
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            throw new DirectoryNotFoundException("You are at root");
         } else {
             currentPath.deleteCharAt(currentPath.length() - 1);
             currentPath.delete(currentPath.lastIndexOf(fileSeparator) + 1, currentPath.length());
@@ -76,10 +73,12 @@ public class FileManager {
     }
 
     /**
+     * Returns content of the file.
      * @param fileName
      * @return
+     * @throws FileNotFoundException
      */
-    public String getFile(String fileName){
+    public String getFile(String fileName) throws FileNotFoundException {
 
         StringBuilder result = new StringBuilder();
 
@@ -100,7 +99,7 @@ public class FileManager {
             return result.toString();
 
         } catch (FileNotFoundException e) {
-            return "Such file doesn't exist";
+            throw e;
         } catch (IOException e) {
             return result.toString();
         }
