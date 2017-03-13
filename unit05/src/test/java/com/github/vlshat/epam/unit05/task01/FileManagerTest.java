@@ -1,9 +1,12 @@
 package com.github.vlshat.epam.unit05.task01;
 
 import com.github.vlshat.epam.unit05.task01.Exceptions.DirectoryNotFoundException;
+import com.github.vlshat.epam.unit05.task01.Exceptions.FileExistsException;
 import org.junit.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.FileAlreadyExistsException;
 
 import static org.junit.Assert.*;
 

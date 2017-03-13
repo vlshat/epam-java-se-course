@@ -156,7 +156,7 @@ public class FileManager {
         File file = new File(currentPath + fileName);
 
         if (!file.exists()){
-            throw new FileNotFoundException("Such file already exists");
+            throw new FileNotFoundException("Such file doesn't exist");
         } else {
             file.delete();
         }
