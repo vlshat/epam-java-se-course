@@ -1,6 +1,7 @@
 package com.github.vlshat.epam.unit05.task01;
 
 
+import com.github.vlshat.epam.unit05.task01.Exceptions.DirectoryExsistsException;
 import com.github.vlshat.epam.unit05.task01.Exceptions.DirectoryNotFoundException;
 import com.github.vlshat.epam.unit05.task01.Exceptions.FileExistsException;
 
@@ -53,7 +54,7 @@ public class FileManager {
     }
 
     /**
-     * @return list of files and directories
+     * @return list of files and directories as a string
      */
     public String listFilesAndDirectories(){
 
@@ -164,12 +165,12 @@ public class FileManager {
 
     /**
      * @param dirName
-     * @throws FileExistsException
+     * @throws DirectoryExsistsException
      */
-    public void createDirectory(String dirName) throws FileExistsException {
+    public void createDirectory(String dirName) throws DirectoryExsistsException {
         File file = new File(currentPath + fileSeparator + dirName);
         if (file.exists()){
-            throw new FileExistsException("Such directory exists");
+            throw new DirectoryExsistsException("Such directory exists");
         } else {
             file.mkdir();
         }
@@ -181,6 +182,9 @@ public class FileManager {
      * @param text
      */
     public void addTextToFile(String fileName, String text){
+        if (text == null)
+            throw new IllegalArgumentException("Text cannot be null");
+
         try {
             Files.write(Paths.get(currentPath + fileName), text.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
