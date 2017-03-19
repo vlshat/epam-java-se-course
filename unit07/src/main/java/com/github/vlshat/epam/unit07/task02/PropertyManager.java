@@ -72,7 +72,7 @@ public class PropertyManager {
      * @throws KeyNotFoundException
      * @throws PropertyFileNotFoundException
      */
-    public String getValue(String key) throws KeyNotFoundException, PropertyFileNotFoundException {
+    public synchronized String getValue(String key) throws KeyNotFoundException, PropertyFileNotFoundException {
 
         if (propertyMap == null)
             throw new PropertyFileNotFoundException("No property file");
@@ -83,9 +83,4 @@ public class PropertyManager {
         return propertyMap.get(key);
     }
 
-    public static void main(String[] args) throws PropertyFileNotFoundException, KeyNotFoundException {
-        PropertyManager propertyReader = new PropertyManager();
-        System.out.println(propertyReader.getResourceList());
-        propertyReader.loadResource("question_en");
-    }
 }
