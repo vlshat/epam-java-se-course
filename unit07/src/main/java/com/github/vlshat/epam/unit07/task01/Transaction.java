@@ -5,25 +5,25 @@ package com.github.vlshat.epam.unit07.task01;
  */
 public class Transaction {
 
-    private int operationId;
-    private String sender;
-    private String recipient;
+    private long operationId;
+    private long senderNumber;
+    private long recipientNumber;
 
-    public Transaction(int operationId, String sender, String recipient) {
+    public Transaction(long operationId, long senderNumber, long recipientNumber) {
         this.operationId = operationId;
-        this.sender = sender;
-        this.recipient = recipient;
+        this.senderNumber = senderNumber;
+        this.recipientNumber = recipientNumber;
     }
 
-    public int getOperationId() {
+    public long getOperationId() {
         return operationId;
     }
 
-    public String getSender() {
-        return sender;
+    public long getSenderNumber() {
+        return senderNumber;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public long getRecipientNumber() {
+        return recipientNumber;
     }
 }
