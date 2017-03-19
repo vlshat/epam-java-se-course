@@ -59,7 +59,7 @@ public class IntegerSetterGetter extends Thread{
 
                 System.out.println("Поток " + getName()
                         + " ждет пока очередь заполнится.");
-                resource.wait(500);
+                resource.wait(100);
                 System.out
                         .println("Поток " + getName() + " возобновил работу.");
                 number = resource.getElement();
