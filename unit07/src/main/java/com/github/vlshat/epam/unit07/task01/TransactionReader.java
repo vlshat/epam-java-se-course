@@ -1,6 +1,11 @@
 package com.github.vlshat.epam.unit07.task01;
 
-import java.io.File;
+import com.github.vlshat.epam.unit07.task01.entities.Transaction;
+
+import java.io.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 
 /**
  * Created by vladislav on 20.03.17.
@@ -8,9 +13,14 @@ import java.io.File;
 public class TransactionReader extends Thread{
 
     private File file;
+    private TransactionExecutor transactionExecutor;
+    private DecimalFormat decimalFormat;
 
-    public TransactionReader(File file) {
+    public TransactionReader(File file, TransactionExecutor transactionExecutor) {
         this.file = file;
+        this.transactionExecutor = transactionExecutor;
+        decimalFormat = new DecimalFormat();
+        decimalFormat.setParseBigDecimal(true);
     }
 
     @Override
@@ -19,6 +29,21 @@ public class TransactionReader extends Thread{
             throw new IllegalArgumentException();
         }
 
-        super.run();
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String s = null;
+
+            while ((s = reader.readLine()) != null) {
+                String[] data = s.split(" ");
+                transactionExecutor.addTransaction(new Transaction(Long.parseLong(data[0]),
+                        Long.parseLong(data[1]),
+                        (BigDecimal) decimalFormat.parse(data[2])));
+            }
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }

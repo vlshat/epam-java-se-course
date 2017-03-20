@@ -56,4 +56,12 @@ public class Account {
 
         amount = amount.min(sum);
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", amount=" + amount +
+                '}';
+    }
 }
