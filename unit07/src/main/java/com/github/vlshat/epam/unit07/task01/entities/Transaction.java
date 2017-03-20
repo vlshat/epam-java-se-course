@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Created by vladislav on 20.03.17.
  */
-public class Transaction {
+public class Transaction implements Comparable{
 
     private String transactionId = UUID.randomUUID().toString();
     private long sender;
@@ -38,5 +38,10 @@ public class Transaction {
     @Override
     public String toString() {
         return sender + " " + recipient + " " + sum.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

@@ -11,6 +11,12 @@ import java.util.Queue;
 public class TransactionExecutor extends Thread {
 
     private Queue<Transaction> transactions = new PriorityQueue<>();
+    private TransactionsApplication transactionsApplication;
+
+    public TransactionExecutor(TransactionsApplication transactionsApplication) {
+        this.transactionsApplication = transactionsApplication;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -21,7 +27,8 @@ public class TransactionExecutor extends Thread {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println(transactions.poll());
+
+                transactionsApplication.commitTransaction(transactions.poll());
             }
         }
 

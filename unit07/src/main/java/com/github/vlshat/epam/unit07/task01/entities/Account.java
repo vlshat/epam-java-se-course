@@ -54,7 +54,7 @@ public class Account {
             throw new IllegalArgumentException();
         }
 
-        amount = amount.min(sum);
+        amount = amount.subtract(sum);
     }
 
     @Override
