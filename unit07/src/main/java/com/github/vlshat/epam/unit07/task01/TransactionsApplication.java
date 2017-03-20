@@ -49,12 +49,20 @@ public class TransactionsApplication {
         }
     }
 
+    /**
+     * Executes transaction on accounts.
+     * @param transaction
+     */
     public void commitTransaction(Transaction transaction) {
         accounts.get(transaction.getSender()).withdraw(transaction.getSum());
         accounts.get(transaction.getRecipient()).addMoney(transaction.getSum());
 
     }
 
+    /**
+     * Adds new account to the base.
+     * @param account
+     */
     public void addAccount(Account account) {
         accounts.put(account.getId(), account);
     }

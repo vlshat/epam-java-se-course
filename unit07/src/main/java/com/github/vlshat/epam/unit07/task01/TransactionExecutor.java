@@ -5,8 +5,9 @@ import com.github.vlshat.epam.unit07.task01.entities.Transaction;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+
 /**
- * Created by vladislav on 20.03.17.
+ * This class processes transactions.
  */
 public class TransactionExecutor extends Thread {
 
@@ -34,6 +35,10 @@ public class TransactionExecutor extends Thread {
 
     }
 
+    /**
+     * Adds transaction to the Queue.
+     * @param transaction
+     */
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }

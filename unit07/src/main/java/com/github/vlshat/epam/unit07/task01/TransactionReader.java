@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 
 /**
- * Created by vladislav on 20.03.17.
+ * TransactionReader processes concrete file and creates Transaction object.
  */
 public class TransactionReader extends Thread{
 
