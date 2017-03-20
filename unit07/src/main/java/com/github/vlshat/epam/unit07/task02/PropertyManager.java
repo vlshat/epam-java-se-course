@@ -14,6 +14,7 @@ import java.util.PropertyResourceBundle;
  */
 public class PropertyManager {
     private Map<String, String> propertyMap;
+    private String currentPropertyFile = "";
 
 
     /**
@@ -46,22 +47,24 @@ public class PropertyManager {
      * @param name
      * @throws PropertyFileNotFoundException
      */
-    public void loadResource(String name) throws PropertyFileNotFoundException {
+    public synchronized void loadResource(String name) throws PropertyFileNotFoundException {
 
-        File file = new File("src/main/resources/" + name + ".properties");
+        if (!currentPropertyFile.equals(name)) {
+            File file = new File("src/main/resources/" + name + ".properties");
 
-        if (!file.exists()){
-            throw new PropertyFileNotFoundException("File not found");
-        }
+            if (!file.exists()){
+                throw new PropertyFileNotFoundException("File not found");
+            }
 
-        PropertyResourceBundle currentResource = (PropertyResourceBundle) PropertyResourceBundle.getBundle(name);
+            PropertyResourceBundle currentResource = (PropertyResourceBundle) PropertyResourceBundle.getBundle(name);
 
-        Enumeration<String> stringEnumeration = currentResource.getKeys();
-        propertyMap = new HashMap<>();
+            Enumeration<String> stringEnumeration = currentResource.getKeys();
+            propertyMap.clear();
 
-        while (stringEnumeration.hasMoreElements()){
-            String key = stringEnumeration.nextElement();
-            propertyMap.put(key, currentResource.getString(key));
+            while (stringEnumeration.hasMoreElements()){
+                String key = stringEnumeration.nextElement();
+                propertyMap.put(key, currentResource.getString(key));
+            }
         }
     }
 
