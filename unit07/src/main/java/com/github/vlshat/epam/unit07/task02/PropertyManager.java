@@ -13,9 +13,9 @@ import java.util.PropertyResourceBundle;
  * Created by vladislav on 20.03.17.
  */
 public class PropertyManager {
+
     private Map<String, String> propertyMap;
     private String currentPropertyFile = "";
-
 
     /**
      * Returns list of *.property files in resources directory.
@@ -50,6 +50,7 @@ public class PropertyManager {
     public synchronized void loadResource(String name) throws PropertyFileNotFoundException {
 
         if (!currentPropertyFile.equals(name)) {
+            currentPropertyFile = name;
             File file = new File("src/main/resources/" + name + ".properties");
 
             if (!file.exists()){
