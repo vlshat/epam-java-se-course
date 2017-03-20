@@ -1,4 +1,4 @@
-| Header  | Another header |
-|---------|----------------|
-| field 1 | something      |
-| field 2 | something else |
+|          | Random Access |Key-Value pairs |Allows Duplicates|Allows null values|Thread Safe|Blocking operations|
+|----------|----------------|----------------|----------------|------------------|-----------|-------------------|
+| ArrayList |+|----------------|----------------|
+| field 2 | something else |----------------|----------------|
