@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by vladislav on 20.03.17.
  */
-public class Account {
+public abstract class Account {
 
     private long id;
     private String ownerName;
@@ -23,6 +23,7 @@ public class Account {
         this.id = id;
         this.ownerName = ownerName;
         this.ownerSurname = ownerSurname;
+        amount = new BigDecimal(0);
     }
 
     public long getId() {
