@@ -1,7 +1,9 @@
 package com.github.vlshat.epam.unit07.task01;
 
+import com.github.vlshat.epam.unit07.task01.entities.Account;
 import com.github.vlshat.epam.unit07.task01.entities.Transaction;
 
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -12,10 +14,10 @@ import java.util.Queue;
 public class TransactionExecutor extends Thread {
 
     private Queue<Transaction> transactions = new PriorityQueue<>();
-    private TransactionsApplication transactionsApplication;
+    private Map<Long, Account> accounts;
 
-    public TransactionExecutor(TransactionsApplication transactionsApplication) {
-        this.transactionsApplication = transactionsApplication;
+    public TransactionExecutor(Map<Long, Account> accounts) {
+        this.accounts = accounts;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class TransactionExecutor extends Thread {
                 }
             } else {
 
-                transactionsApplication.commitTransaction(transactions.poll());
+                commitTransaction(transactions.poll());
             }
         }
 
@@ -41,5 +43,15 @@ public class TransactionExecutor extends Thread {
      */
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
+    }
+
+    /**
+     * Executes transaction on accounts.
+     * @param transaction
+     */
+    private void commitTransaction(Transaction transaction) {
+        accounts.get(transaction.getSender()).withdraw(transaction.getSum());
+        accounts.get(transaction.getRecipient()).addMoney(transaction.getSum());
+
     }
 }

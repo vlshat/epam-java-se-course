@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class TransactionsApplication {
 
-    private Map<Long, Account> accounts = new HashMap<>();
+    private final Map<Long, Account> accounts = new HashMap<>();
 
     public static void main(String[] args) {
         new TransactionsApplication().start();
@@ -33,7 +33,7 @@ public class TransactionsApplication {
             System.out.println(a);
         }
 
-        TransactionExecutor transactionExecutor = new TransactionExecutor(this);
+        TransactionExecutor transactionExecutor = new TransactionExecutor(accounts);
         transactionExecutor.start();
         TransactionReader transactionReader = new TransactionReader(new File("data/transactions.txt"), transactionExecutor);
         transactionReader.start();
@@ -49,15 +49,6 @@ public class TransactionsApplication {
         }
     }
 
-    /**
-     * Executes transaction on accounts.
-     * @param transaction
-     */
-    public void commitTransaction(Transaction transaction) {
-        accounts.get(transaction.getSender()).withdraw(transaction.getSum());
-        accounts.get(transaction.getRecipient()).addMoney(transaction.getSum());
-
-    }
 
     /**
      * Adds new account to the base.
@@ -65,5 +56,9 @@ public class TransactionsApplication {
      */
     public void addAccount(Account account) {
         accounts.put(account.getId(), account);
+    }
+
+    public Map<Long, Account> getAccounts() {
+        return accounts;
     }
 }

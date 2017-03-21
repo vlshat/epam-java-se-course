@@ -1,4 +1,4 @@
 |          | Random Access |Key-Value pairs |Allows Duplicates|Allows null values|Thread Safe|Blocking operations|
 |----------|----------------|----------------|----------------|------------------|-----------|-------------------|
-| ArrayList |+|----------------|----------------|
+| ArrayList |       +       |----------------|----------------|
 | field 2 | something else |----------------|----------------|
