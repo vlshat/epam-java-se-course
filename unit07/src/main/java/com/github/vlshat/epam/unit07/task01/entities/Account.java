@@ -1,5 +1,7 @@
 package com.github.vlshat.epam.unit07.task01.entities;
 
+import com.github.vlshat.epam.unit07.task01.exceptions.IllegalPaymentException;
+
 import java.math.BigDecimal;
 
 /**
@@ -42,17 +44,17 @@ public abstract class Account {
         return amount;
     }
 
-    public void addMoney(BigDecimal sum) {
+    public void addMoney(BigDecimal sum) throws IllegalPaymentException {
         if (sum == null || sum.compareTo(new BigDecimal(0)) == -1) {
-            throw new IllegalArgumentException();
+            throw new IllegalPaymentException("Illegal sum");
         }
         amount = amount.add(sum);
     }
 
-    public void withdraw(BigDecimal sum) {
+    public void withdraw(BigDecimal sum) throws IllegalPaymentException {
         if (sum == null || (amount.min(sum).compareTo(new BigDecimal(0)) == -1)
                 || (sum.compareTo(new BigDecimal(0)) == -1)) {
-            throw new IllegalArgumentException();
+            throw new IllegalPaymentException("Illegal sum");
         }
 
         amount = amount.subtract(sum);

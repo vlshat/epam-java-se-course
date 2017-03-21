@@ -1,5 +1,7 @@
 package com.github.vlshat.epam.unit07.task01.entities;
 
+import com.github.vlshat.epam.unit07.task01.exceptions.IllegalPaymentException;
+
 import java.math.BigDecimal;
 
 /**
@@ -15,12 +17,12 @@ public class SynchronisedAccount extends Account {
     }
 
     @Override
-    public synchronized void addMoney(BigDecimal sum) {
+    public synchronized void addMoney(BigDecimal sum) throws IllegalPaymentException {
         super.addMoney(sum);
     }
 
     @Override
-    public synchronized void withdraw(BigDecimal sum) {
+    public synchronized void withdraw(BigDecimal sum) throws IllegalPaymentException {
         super.withdraw(sum);
     }
 }

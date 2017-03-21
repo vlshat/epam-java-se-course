@@ -2,6 +2,7 @@ package com.github.vlshat.epam.unit07.task01;
 
 import com.github.vlshat.epam.unit07.task01.entities.Account;
 import com.github.vlshat.epam.unit07.task01.entities.Transaction;
+import com.github.vlshat.epam.unit07.task01.exceptions.IllegalPaymentException;
 
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -31,7 +32,11 @@ public class TransactionExecutor extends Thread {
                 }
             } else {
 
-                commitTransaction(transactions.poll());
+                try {
+                    commitTransaction(transactions.poll());
+                } catch (IllegalPaymentException e) {
+                    System.out.println("Transaction aborted");
+                }
             }
         }
 
@@ -49,7 +54,7 @@ public class TransactionExecutor extends Thread {
      * Executes transaction on accounts.
      * @param transaction
      */
-    private void commitTransaction(Transaction transaction) {
+    private void commitTransaction(Transaction transaction) throws IllegalPaymentException {
         accounts.get(transaction.getSender()).withdraw(transaction.getSum());
         accounts.get(transaction.getRecipient()).addMoney(transaction.getSum());
 

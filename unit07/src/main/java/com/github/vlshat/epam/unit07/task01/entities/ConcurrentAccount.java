@@ -1,5 +1,7 @@
 package com.github.vlshat.epam.unit07.task01.entities;
 
+import com.github.vlshat.epam.unit07.task01.exceptions.IllegalPaymentException;
+
 import java.math.BigDecimal;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -20,14 +22,14 @@ public class ConcurrentAccount extends Account{
     }
 
     @Override
-    public void addMoney(BigDecimal sum) {
+    public void addMoney(BigDecimal sum) throws IllegalPaymentException {
         lock.lock();
         super.addMoney(sum);
         lock.unlock();
     }
 
     @Override
-    public void withdraw(BigDecimal sum) {
+    public void withdraw(BigDecimal sum) throws IllegalPaymentException {
         lock.lock();
         super.withdraw(sum);
         lock.unlock();
