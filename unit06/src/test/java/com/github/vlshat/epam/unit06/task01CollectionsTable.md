@@ -10,3 +10,4 @@
 |HashMap|Not ordered|No|Yes|No|Yes|No|No|
 |LinkedHashMap|Insertion-order|No|Yes|No|Yes|No|No|
 |TreeMap|Natural order|No|Yes|No|No|No|No|
+|PriorityQueue|Comparator-based|No|No|Yes|No|No|No|
