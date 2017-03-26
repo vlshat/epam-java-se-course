@@ -1,5 +1,4 @@
-Collections
-||Ordering|Random access|Key-Value pairs|Allows duplicates|Allows null values|Thread safe|Blocking operations|
+| |Ordering|Random access|Key-Value pairs|Allows duplicates|Allows null values|Thread safe|Blocking operations|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |LinkedList|Insertion-order|No|No|Yes|Yes|No|No|
 |ArrayList|Insertion-order|Yes|No|Yes|Yes|No|No|
