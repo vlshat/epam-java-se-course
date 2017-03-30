@@ -29,11 +29,11 @@ public class CustomLinkedList<T> implements List<T> {
 
         while (iterator.hasNext()) {
             iterator = iterator.next;
-            if (o == null) {
-                if (iterator.value == null) {
+            if (iterator.value == null) {
+                if (o == null) {
                     return true;
                 }
-            } else if (o.equals(iterator.value)){
+            } else if (iterator.value.equals(o)){
                 return true;
             }
         }
@@ -60,7 +60,7 @@ public class CustomLinkedList<T> implements List<T> {
         Node<T> iterator = head;
 
         while (iterator.hasNext()) {
-            iterator = head.next;
+            iterator = iterator.next;
         }
 
         iterator.next = new Node<>(t);

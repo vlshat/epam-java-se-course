@@ -25,12 +25,12 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
 
-        for (Object element : data) {
-            if (element == null) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == null) {
                 if (o == null){
                     return true;
                 }
-            } else if (element.equals(o)) {
+            } else if (data[i].equals(o)) {
                 return true;
             }
         }

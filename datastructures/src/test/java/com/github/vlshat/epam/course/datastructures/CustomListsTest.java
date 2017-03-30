@@ -12,6 +12,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertTrue;
@@ -74,14 +75,12 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testThatListNotContainsNullIfItWasNotAdded() {
         list.add("fff");
         assertFalse(list.contains(null));
     }
 
     @Test
-    @Ignore
     public void testThatListsSizeIsDynamic() throws Exception {
         int size = 50;
 
