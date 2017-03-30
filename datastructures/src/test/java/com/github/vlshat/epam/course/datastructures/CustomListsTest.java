@@ -129,7 +129,6 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testThatWeCanDeleteLastElement() throws Exception {
         fillList();
 

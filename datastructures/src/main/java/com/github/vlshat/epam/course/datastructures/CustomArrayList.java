@@ -123,7 +123,17 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        return null;
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        T value = (T) data[index];
+
+        System.arraycopy(data, index, data, index, data.length - index - 1);
+        size -= 1;
+
+        return value;
     }
 
     @Override
