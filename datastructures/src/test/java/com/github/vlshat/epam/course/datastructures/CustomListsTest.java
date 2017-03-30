@@ -108,7 +108,6 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testThatWeCanRemoveExistedElementFromList() throws Exception {
         fillList();
 
@@ -151,12 +150,23 @@ public class CustomListsTest {
         list.remove(list.size());
     }
 
+
     @Test
-    @Ignore
     public void testThatWeCantDeleteNonExistentElement() throws Exception {
         fillList();
 
         assertFalse(list.remove("sadasdasd"));
+    }
+
+    @Test
+    public void testAddingByIndex() throws Exception {
+        fillList();
+        int previousSize = list.size();
+
+        list.add(3, "added");
+        assertTrue(list.contains("added"));
+        assertThat(list.get(3), is(equalTo("added")));
+        assertTrue(list.size() == previousSize + 1);
     }
 
     private void fillList() {

@@ -72,7 +72,23 @@ public class CustomLinkedList<T> implements List<T> {
     @Override
     public boolean remove(Object o) {
 
+        Node<T> previousNode = head;
+        Node<T> node = head.next;
 
+        while (node.hasNext()) {
+            if (node.value == null) {
+                if (o == null) {
+                    previousNode.next = node.next;
+                    return true;
+                }
+            } else if (node.value.equals(o)) {
+                previousNode.next = node.next;
+                return true;
+            }
+
+            previousNode = node;
+            node = node.next;
+        }
 
         return false;
     }
@@ -129,9 +145,20 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+        indexValidator(index);
+
+        Node<T> previousNode = head;
+        Node<T> node = head.next;
+
+        for (int i = 0; i < index; i++) {
+            previousNode = node;
+            node = node.next;
         }
+
+        Node<T> newNode = new Node<>(element);
+        previousNode.next = newNode;
+        newNode.next = node;
+        size += 1;
     }
 
     @Override
