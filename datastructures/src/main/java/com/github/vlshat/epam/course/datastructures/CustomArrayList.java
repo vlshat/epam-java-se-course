@@ -1,26 +1,40 @@
 package com.github.vlshat.epam.course.datastructures;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
- * Created by vladislav on 28.03.17.
+ * @author Vladislav Shatilenko
  */
-public class CustomArrayList<T> implements List<T>{
+public class CustomArrayList<T> implements List<T> {
+
+    public static final int DEFAULT_CAPACITY = 16;
+
+    private Object[] data = new Object[DEFAULT_CAPACITY];
+    private int size = 0;
+
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
+
+        for (Object element : data) {
+            if (element == null) {
+                if (o == null){
+                    return true;
+                }
+            } else if (element.equals(o)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -41,7 +55,14 @@ public class CustomArrayList<T> implements List<T>{
 
     @Override
     public boolean add(T t) {
-        return false;
+
+        if (size == data.length) {
+            int newLength = (data.length * 3) / 2 + 1;
+            data = Arrays.copyOf(data, newLength);
+        }
+
+        data[size++] = t;
+        return true;
     }
 
     @Override
@@ -76,12 +97,18 @@ public class CustomArrayList<T> implements List<T>{
 
     @Override
     public void clear() {
-
+        data = new Object[DEFAULT_CAPACITY];
+        size = 0;
     }
 
     @Override
     public T get(int index) {
-        return null;
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return (T) data[index];
     }
 
     @Override

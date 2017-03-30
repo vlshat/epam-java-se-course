@@ -11,29 +11,32 @@ import java.util.ListIterator;
 public class CustomLinkedList<T> implements List<T> {
 
     private Node<T> head = new Node<>(null);
+    private int size = 0;
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return head.hasNext();
+        return !head.hasNext();
     }
 
     @Override
     public boolean contains(Object o) {
+        Node<T> iterator = head;
 
-        Node<T> node = head;
-
-        while (node.hasNext()) {
-            node = node.next;
-            if (node.value.equals(o)) {
+        while (iterator.hasNext()) {
+            iterator = iterator.next;
+            if (o == null) {
+                if (iterator.value == null) {
+                    return true;
+                }
+            } else if (o.equals(iterator.value)){
                 return true;
             }
         }
-
         return false;
     }
 
@@ -56,12 +59,14 @@ public class CustomLinkedList<T> implements List<T> {
     public boolean add(T t) {
         Node<T> iterator = head;
 
-        while (iterator.hasNext()){
-            iterator = iterator.next;
+        while (iterator.hasNext()) {
+            iterator = head.next;
         }
 
-        iterator = new Node<>(t);
-        return true;
+        iterator.next = new Node<>(t);
+        size++;
+
+        return false;
     }
 
     @Override
@@ -96,7 +101,8 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public void clear() {
-
+        size = 0;
+        head.next = null;
     }
 
     @Override
@@ -143,6 +149,7 @@ public class CustomLinkedList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
     }
+
 
     private class Node<T> {
 

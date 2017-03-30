@@ -6,4 +6,4 @@
 5. Exceptions
 6. Collections
 7. Multithreading
-extra: Data structures
+8. extra: Data structures
