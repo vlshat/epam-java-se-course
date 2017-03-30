@@ -92,7 +92,6 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testThatWeCanGetElementByIndex() {
 
         fillList();
@@ -101,7 +100,6 @@ public class CustomListsTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    @Ignore
     public void testThatWeCantGetElementByIndexMoreThenSize() throws Exception {
 
         fillList();
