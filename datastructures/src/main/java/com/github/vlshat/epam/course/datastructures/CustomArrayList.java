@@ -27,7 +27,7 @@ public class CustomArrayList<T> implements List<T> {
 
         for (int i = 0; i < size; i++) {
             if (data[i] == null) {
-                if (o == null){
+                if (o == null) {
                     return true;
                 }
             } else if (data[i].equals(o)) {
@@ -67,7 +67,7 @@ public class CustomArrayList<T> implements List<T> {
 
         for (int i = 0; i < size; i++) {
             if (data[i] == null) {
-                if (o == null){
+                if (o == null) {
                     remove(i);
                     return true;
                 }
@@ -121,7 +121,12 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+
+        indexValidator(index);
+
+        data[index] = element;
+
+        return element;
     }
 
     @Override

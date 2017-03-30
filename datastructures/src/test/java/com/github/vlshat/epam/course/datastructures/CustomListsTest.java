@@ -169,6 +169,17 @@ public class CustomListsTest {
         assertTrue(list.size() == previousSize + 1);
     }
 
+    @Test
+    public void testSettingByIndex() throws Exception {
+        fillList();
+        int previousSize = list.size();
+
+        list.set(3, "set");
+        assertTrue(list.contains("set"));
+        assertThat(list.get(3), is(equalTo("set")));
+        assertTrue(list.size() == previousSize);
+    }
+
     private void fillList() {
         list.add("aa0a");
         list.add("aa1a");

@@ -33,7 +33,7 @@ public class CustomLinkedList<T> implements List<T> {
                 if (o == null) {
                     return true;
                 }
-            } else if (iterator.value.equals(o)){
+            } else if (iterator.value.equals(o)) {
                 return true;
             }
         }
@@ -140,7 +140,21 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+        indexValidator(index);
+
+        Node<T> previousNode = head;
+        Node<T> node = head.next;
+
+        for (int i = 0; i < index; i++) {
+            previousNode = node;
+            node = node.next;
+        }
+
+        Node<T> newNode = new Node<>(element);
+        previousNode.next = newNode;
+        newNode.next = node.next;
+
+        return element;
     }
 
     @Override
