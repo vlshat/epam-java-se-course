@@ -196,12 +196,40 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+
+        Node<T> node = head.next;
+
+        for (int i = 0; i < size; i++) {
+            if (node.value == null) {
+                if (o == null) {
+                    return i;
+                }
+            } else if (node.value.equals(o)) {
+                return i;
+            }
+            node = node.next;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+
+        int index = -1;
+
+        Node<T> node = head.next;
+
+        for (int i = 0; i < size; i++) {
+            if (node.value == null) {
+                if (o == null) {
+                    index = i;
+                }
+            } else if (node.value.equals(o)) {
+                index = i;
+            }
+            node = node.next;
+        }
+        return index;
     }
 
     @Override

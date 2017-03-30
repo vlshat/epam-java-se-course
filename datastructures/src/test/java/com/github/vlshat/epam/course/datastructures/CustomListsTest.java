@@ -134,7 +134,7 @@ public class CustomListsTest {
 
         list.remove(list.size() - 1);
 
-        assertFalse(list.contains("aa4a"));
+        assertFalse(list.contains("aa6a"));
         assertThat(list.size(), is(equalTo(prevSize - 1)));
     }
 
@@ -180,6 +180,33 @@ public class CustomListsTest {
         assertTrue(list.size() == previousSize);
     }
 
+    @Test
+    public void testIndexOf() throws Exception {
+        fillList();
+        assertThat(list.indexOf("sss"), is(6));
+    }
+
+    @Test
+    public void testIndexOfNotExistingElement() throws Exception {
+        fillList();
+        assertThat(list.indexOf(null), is(-1));
+        assertThat(list.indexOf("aa"), is(-1));
+    }
+
+    @Test
+    public void testLastIndexOf() {
+        fillList();
+        assertThat(list.lastIndexOf("sss"), is(list.size() - 2));
+        assertThat(list.lastIndexOf("aa1a"), is(1));
+    }
+
+    @Test
+    public void testLastIndexOfNotExistingElement() throws Exception {
+        fillList();
+        assertThat(list.lastIndexOf(null), is(-1));
+        assertThat(list.lastIndexOf("aa"), is(-1));
+    }
+
     private void fillList() {
         list.add("aa0a");
         list.add("aa1a");
@@ -187,5 +214,9 @@ public class CustomListsTest {
         list.add("ssss");
         list.add("aa3a");
         list.add("aa4a");
+        list.add("sss");
+        list.add("aa5a");
+        list.add("sss");
+        list.add("aa6a");
     }
 }
