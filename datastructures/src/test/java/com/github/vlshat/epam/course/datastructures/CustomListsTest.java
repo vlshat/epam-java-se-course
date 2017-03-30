@@ -8,6 +8,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
@@ -205,6 +206,17 @@ public class CustomListsTest {
         fillList();
         assertThat(list.lastIndexOf(null), is(-1));
         assertThat(list.lastIndexOf("aa"), is(-1));
+    }
+
+    @Test
+    public void testIterator() throws Exception {
+        fillList();
+        Iterator<String> iterator = list.iterator();
+
+        while (iterator.hasNext()) {
+            String value = iterator.next();
+            assertTrue(list.contains(value));
+        }
     }
 
     private void fillList() {

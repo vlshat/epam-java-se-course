@@ -40,7 +40,7 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new CustomListIterator<>();
     }
 
     @Override
@@ -87,6 +87,7 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
+
         return false;
     }
 
@@ -211,6 +212,25 @@ public class CustomArrayList<T> implements List<T> {
     private void indexValidator(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private class CustomListIterator<T> implements Iterator<T> {
+
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public T next() {
+            if (hasNext()) {
+                return (T) data[index++];
+            }
+
+            throw new NoSuchElementException();
         }
     }
 }

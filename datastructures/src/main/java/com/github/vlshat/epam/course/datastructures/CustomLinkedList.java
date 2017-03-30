@@ -1,9 +1,6 @@
 package com.github.vlshat.epam.course.datastructures;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * Created by vladislav on 28.03.17.
@@ -42,7 +39,7 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new CustomLinkedListIterator<>();
     }
 
     @Override
@@ -265,6 +262,27 @@ public class CustomLinkedList<T> implements List<T> {
 
         public boolean hasNext() {
             return next != null;
+        }
+    }
+
+    private class CustomLinkedListIterator<T> implements Iterator<T> {
+
+        private Node<T> node = (Node<T>) head;
+
+        @Override
+        public boolean hasNext() {
+            return node.hasNext();
+        }
+
+        @Override
+        public T next() {
+            if (node.hasNext()) {
+                T value = node.next.value;
+                node = node.next;
+                return (T) value;
+            }
+
+            throw new NoSuchElementException();
         }
     }
 }
