@@ -22,19 +22,8 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        Node<T> iterator = head;
 
-        while (iterator.hasNext()) {
-            iterator = iterator.next;
-            if (iterator.value == null) {
-                if (o == null) {
-                    return true;
-                }
-            } else if (iterator.value.equals(o)) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override

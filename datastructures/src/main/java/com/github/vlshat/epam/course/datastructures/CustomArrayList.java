@@ -25,17 +25,7 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
 
-        for (int i = 0; i < size; i++) {
-            if (data[i] == null) {
-                if (o == null) {
-                    return true;
-                }
-            } else if (data[i].equals(o)) {
-                return true;
-            }
-        }
-
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
