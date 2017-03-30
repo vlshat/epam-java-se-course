@@ -104,9 +104,7 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public T get(int index) {
 
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        indexValidator(index);
 
         return (T) data[index];
     }
@@ -124,13 +122,11 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public T remove(int index) {
 
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        indexValidator(index);
 
         T value = (T) data[index];
 
-        System.arraycopy(data, index, data, index, data.length - index - 1);
+        System.arraycopy(data, index + 1, data, index, data.length - index - 1);
         size -= 1;
 
         return value;
@@ -159,5 +155,11 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    private void indexValidator(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 }

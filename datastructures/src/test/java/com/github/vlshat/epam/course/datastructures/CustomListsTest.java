@@ -118,7 +118,6 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testThatWeCanDeleteElementByIndex() throws Exception {
         fillList();
 
@@ -138,6 +137,18 @@ public class CustomListsTest {
 
         assertFalse(list.contains("aa4a"));
         assertThat(list.size(), is(equalTo(prevSize - 1)));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testUnableToDeleteElementByNegativeIndex() throws Exception {
+        fillList();
+        list.remove(-1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testUnableToDeleteElementByLargerIndex() throws Exception {
+        fillList();
+        list.remove(list.size());
     }
 
     @Test

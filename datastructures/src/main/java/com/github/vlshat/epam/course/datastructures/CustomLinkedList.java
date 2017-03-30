@@ -71,6 +71,9 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
+
+
+
         return false;
     }
 
@@ -108,9 +111,7 @@ public class CustomLinkedList<T> implements List<T> {
     @Override
     public T get(int index) {
 
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        indexValidator(index);
 
         Node<T> node = head.next;
 
@@ -136,9 +137,7 @@ public class CustomLinkedList<T> implements List<T> {
     @Override
     public T remove(int index) {
 
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        indexValidator(index);
 
         Node<T> node = head.next;
 
@@ -177,6 +176,12 @@ public class CustomLinkedList<T> implements List<T> {
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    private void indexValidator(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
 
