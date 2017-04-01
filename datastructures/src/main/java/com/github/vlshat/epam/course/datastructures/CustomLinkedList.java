@@ -117,12 +117,27 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+
+        Object[] elements = c.toArray();
+
+        for (Object element : elements) {
+            if (!contains(element)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        Object[] elements = c.toArray();
+
+        for (Object element : elements) {
+            add((T) element);
+        }
+
+        return true;
     }
 
     @Override

@@ -253,12 +253,32 @@ public class CustomListsTest {
 
         arr1 = list.toArray(arr1);
 
-        System.out.println(Arrays.toString(arr1));
-
         for (int i = 0; i < expected.length; i++) {
             assertTrue(expected[i].equals(arr1[i]));
         }
     }
+
+    @Test
+    public void testContainsAllMethod() throws Exception {
+        fillList();
+        List<String> list1 = new ArrayList<>();
+        Collections.addAll(list1, "aa0a", "aa1a", "aa2a", "ssss", "aa3a", "aa4a", "sss", "aa5a", "sss", "aa6a");
+        List<String> list2 = new ArrayList<>();
+        Collections.addAll(list2, "aa0a", "aa1a", "aa2a", "ssss", "aa3a", "aa4a", "sss", "aa5a", "sss", "aa7a");
+
+        assertTrue(list.containsAll(list1));
+        assertFalse(list.containsAll(list2));
+    }
+
+    @Test
+    public void testAddAll() throws Exception {
+        fillList();
+        List<String> list1 = new ArrayList<>();
+        Collections.addAll(list1, "test1", "test2", "test3");
+        list.addAll(list1);
+        assertTrue(list1.containsAll(list1));
+    }
+
 
     private void fillList() {
         list.add("aa0a");
