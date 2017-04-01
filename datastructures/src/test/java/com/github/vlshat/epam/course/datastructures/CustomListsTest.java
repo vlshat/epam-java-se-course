@@ -235,6 +235,7 @@ public class CustomListsTest {
         String[] expected = {"aa0a", "aa1a", "aa2a", "ssss", "aa3a", "aa4a", "sss", "aa5a", "sss", "aa6a"};
         fillList();
         Object[] arr = list.toArray();
+
         assertTrue(Arrays.equals(expected, arr));
     }
 
