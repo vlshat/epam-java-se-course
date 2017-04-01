@@ -61,14 +61,16 @@ public class CustomLinkedList<T> implements List<T> {
         Node<T> previousNode = head;
         Node<T> node = head.next;
 
-        while (node.hasNext()) {
+        while (previousNode.hasNext()) {
             if (node.value == null) {
                 if (o == null) {
                     previousNode.next = node.next;
+                    size -= 1;
                     return true;
                 }
             } else if (node.value.equals(o)) {
                 previousNode.next = node.next;
+                size -= 1;
                 return true;
             }
 

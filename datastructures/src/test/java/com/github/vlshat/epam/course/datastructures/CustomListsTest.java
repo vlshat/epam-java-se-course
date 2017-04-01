@@ -100,6 +100,7 @@ public class CustomListsTest {
         assertThat(list.get(1), is(equalTo("aa1a")));
     }
 
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testThatWeCantGetElementByIndexMoreThenSize() throws Exception {
 
@@ -115,6 +116,16 @@ public class CustomListsTest {
         list.remove("ssss");
 
         assertFalse("contains", list.contains("ssss"));
+    }
+
+    @Test
+    public void testThatCanDeleteLastElementByValue() throws Exception {
+        fillList();
+        int previousSize = list.size();
+        list.remove("aa6a");
+
+        assertFalse(list.contains("aa6a"));
+        assertFalse(previousSize == list.size());
     }
 
     @Test
@@ -217,6 +228,14 @@ public class CustomListsTest {
             String value = iterator.next();
             assertTrue(list.contains(value));
         }
+    }
+
+    @Test
+    public void testToArrayMethod() throws Exception {
+        String[] expected = {"aa0a", "aa1a", "aa2a", "ssss", "aa3a", "aa4a", "sss", "aa5a", "sss", "aa6a"};
+        fillList();
+        Object[] arr = list.toArray();
+        assertTrue(Arrays.equals(expected, arr));
     }
 
     private void fillList() {
