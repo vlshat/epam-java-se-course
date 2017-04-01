@@ -40,7 +40,21 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+
+        if (a == null)
+            throw new NullPointerException();
+
+        if (a.length < size){
+            return (T1[]) Arrays.copyOf(data, size, a.getClass());
+        }
+
+        System.arraycopy(data, 0, a, 0, size);
+
+        if (a.length > size) {
+            a[size] = null;
+        }
+
+        return a;
     }
 
     @Override

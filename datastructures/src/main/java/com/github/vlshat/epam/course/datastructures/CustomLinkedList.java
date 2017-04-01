@@ -46,7 +46,33 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+
+        if (a == null)
+            throw new NullPointerException();
+
+        Iterator<T> iterator = iterator();
+
+        if (a.length < size){
+
+            T1[] result = (T1[])java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size);
+
+            for (int i = 0; i < size; i++) {
+                result[i] = (T1) iterator.next();
+            }
+
+            return (T1[]) result;
+        }
+
+        for (int i = 0; i < size; i++) {
+            a[i] = (T1) iterator.next();
+        }
+
+        if (a.length > size) {
+            a[size] = null;
+        }
+
+        return a;
     }
 
     @Override

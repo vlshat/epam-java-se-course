@@ -6,10 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.hamcrest.CoreMatchers.is;
@@ -237,6 +234,30 @@ public class CustomListsTest {
         Object[] arr = list.toArray();
 
         assertTrue(Arrays.equals(expected, arr));
+    }
+
+    @Test
+    public void testToArrayMethodWithArrayAsAnArgument() throws Exception {
+        fillList();
+        String[] expected = {"aa0a", "aa1a", "aa2a", "ssss", "aa3a", "aa4a", "sss", "aa5a", "sss", "aa6a"};
+        String[] arr = new String[20];
+
+        list.toArray(arr);
+
+        for (int i = 0; i < expected.length; i++) {
+            assertTrue(expected[i].equals(arr[i]));
+        }
+        assertTrue(arr[list.size()] == null);
+
+        String[] arr1 = new String[2];
+
+        arr1 = list.toArray(arr1);
+
+        System.out.println(Arrays.toString(arr1));
+
+        for (int i = 0; i < expected.length; i++) {
+            assertTrue(expected[i].equals(arr1[i]));
+        }
     }
 
     private void fillList() {
