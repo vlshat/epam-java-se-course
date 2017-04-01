@@ -279,6 +279,41 @@ public class CustomListsTest {
         assertTrue(list1.containsAll(list1));
     }
 
+    @Test
+    public void testAddAllOnIndex() throws Exception {
+        fillList();
+        List<String> list1 = new ArrayList<>();
+        Collections.addAll(list1, "test1", "test2", "test3", "test4");
+        list.addAll(3, list1);
+        assertTrue(list1.containsAll(list1));
+        assertTrue(list.indexOf("test1") == 3);
+        assertTrue(list.indexOf("test2") == 4);
+        assertTrue(list.indexOf("test3") == 5);
+        assertTrue(list.indexOf("test4") == 6);
+    }
+
+    @Test
+    public void testRemoveAll() throws Exception {
+        fillList();
+        List<String> list1 = new ArrayList<>();
+        Collections.addAll(list1, "aa0a", "ssss");
+        list.removeAll(list1);
+        assertFalse(list.containsAll(list1));
+
+    }
+
+    @Test
+    @Ignore
+    public void testRetainAll() throws Exception {
+        fillList();
+        List<String> list1 = new ArrayList<>();
+        Collections.addAll(list1, "aa0a", "ssss");
+        List<String> previousList = list;
+        list.retainAll(list1);
+        assertFalse(list.containsAll(list));
+        assertTrue(list.contains(list1));
+    }
+
 
     private void fillList() {
         list.add("aa0a");

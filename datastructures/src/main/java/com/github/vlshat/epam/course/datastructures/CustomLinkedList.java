@@ -142,12 +142,24 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        Object[] elements = c.toArray();
+
+        for (int i = elements.length - 1; i >= 0; i--) {
+            add(index, (T) elements[i]);
+        }
+
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        Object[] elements = c.toArray();
+
+        for (Object element : elements) {
+            remove((T) element);
+        }
+
+        return true;
     }
 
     @Override
