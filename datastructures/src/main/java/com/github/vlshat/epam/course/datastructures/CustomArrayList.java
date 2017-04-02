@@ -44,7 +44,7 @@ public class CustomArrayList<T> implements List<T> {
         if (a == null)
             throw new NullPointerException();
 
-        if (a.length < size){
+        if (a.length < size) {
             return (T1[]) Arrays.copyOf(data, size, a.getClass());
         }
 
@@ -243,7 +243,7 @@ public class CustomArrayList<T> implements List<T> {
 
             @Override
             public T next() {
-                if (currentIndex + 1== size)
+                if (currentIndex + 1 == size)
                     throw new NoSuchElementException();
                 return (T) data[++currentIndex];
             }
@@ -302,7 +302,7 @@ public class CustomArrayList<T> implements List<T> {
 
             @Override
             public T next() {
-                if (currentIndex + 1== size)
+                if (currentIndex + 1 == size)
                     throw new NoSuchElementException();
                 return (T) data[++currentIndex];
             }

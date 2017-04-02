@@ -52,9 +52,9 @@ public class CustomLinkedList<T> implements List<T> {
 
         Iterator<T> iterator = iterator();
 
-        if (a.length < size){
+        if (a.length < size) {
 
-            T1[] result = (T1[])java.lang.reflect.Array.newInstance(
+            T1[] result = (T1[]) java.lang.reflect.Array.newInstance(
                     a.getClass().getComponentType(), size);
 
             for (int i = 0; i < size; i++) {
@@ -307,7 +307,7 @@ public class CustomLinkedList<T> implements List<T> {
 
             @Override
             public T next() {
-                if (currentIndex + 1== size)
+                if (currentIndex + 1 == size)
                     throw new NoSuchElementException();
                 return (T) CustomLinkedList.this.getNodeByIndex(++currentIndex).value;
             }
@@ -366,7 +366,7 @@ public class CustomLinkedList<T> implements List<T> {
 
             @Override
             public T next() {
-                if (currentIndex + 1== size)
+                if (currentIndex + 1 == size)
                     throw new NoSuchElementException();
                 return (T) CustomLinkedList.this.getNodeByIndex(++currentIndex).value;
             }
@@ -420,7 +420,7 @@ public class CustomLinkedList<T> implements List<T> {
 
         Node<T> node = getNodeByIndex(fromIndex - 1);
 
-        for (int i = fromIndex; i < toIndex ; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             node = node.next;
             result.add(node.value);
         }
@@ -473,7 +473,7 @@ public class CustomLinkedList<T> implements List<T> {
     private Node<T> getNodeByIndex(int index) {
         Node<T> node = head;
 
-        for (int i = 0; i <= index ; i++) {
+        for (int i = 0; i <= index; i++) {
             node = node.next;
         }
 
