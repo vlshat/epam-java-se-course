@@ -134,10 +134,19 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
+        List<T> elementsToSave = new CustomArrayList<T>();
+        Object[] elements = c.toArray();
 
+        for (Object element : elements) {
+            if (contains(element)) {
+                elementsToSave.add((T) element);
+            }
+        }
 
+        clear();
+        addAll(elementsToSave);
 
-        return false;
+        return true;
     }
 
     @Override

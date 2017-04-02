@@ -303,15 +303,16 @@ public class CustomListsTest {
     }
 
     @Test
-    @Ignore
     public void testRetainAll() throws Exception {
         fillList();
         List<String> list1 = new ArrayList<>();
         Collections.addAll(list1, "aa0a", "ssss");
-        List<String> previousList = list;
+        List<String> previousList = new CustomArrayList<>();
+        previousList.addAll(list);
         list.retainAll(list1);
-        assertFalse(list.containsAll(list));
-        assertTrue(list.contains(list1));
+        System.out.println(Arrays.toString(list.toArray()));
+        assertFalse(list.containsAll(previousList));
+        assertTrue(list.containsAll(list1));
     }
 
 

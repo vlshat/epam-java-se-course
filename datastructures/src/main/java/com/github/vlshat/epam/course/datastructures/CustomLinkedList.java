@@ -164,7 +164,20 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+
+        List<T> elementsToSave = new CustomArrayList<T>();
+        Object[] elements = c.toArray();
+
+        for (Object element : elements) {
+            if (contains(element)) {
+                elementsToSave.add((T) element);
+            }
+        }
+
+        clear();
+        addAll(elementsToSave);
+
+        return true;
     }
 
     @Override
@@ -301,7 +314,6 @@ public class CustomLinkedList<T> implements List<T> {
             throw new IndexOutOfBoundsException();
         }
     }
-
 
     private class Node<T> {
 
