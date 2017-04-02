@@ -310,9 +310,49 @@ public class CustomListsTest {
         List<String> previousList = new CustomArrayList<>();
         previousList.addAll(list);
         list.retainAll(list1);
-        System.out.println(Arrays.toString(list.toArray()));
         assertFalse(list.containsAll(previousList));
         assertTrue(list.containsAll(list1));
+    }
+
+    @Test
+    public void testSublist() throws Exception {
+        fillList();
+        List<String> expected = new ArrayList<>();
+        Collections.addAll(expected, "aa2a", "ssss", "aa3a", "aa4a");
+        List<String> result = list.subList(2, 6);
+
+        assertTrue(expected.containsAll(result) && result.containsAll(expected));
+
+    }
+
+    @Test
+    public void testListIterator() throws Exception {
+        fillList();
+        int previousSize = list.size();
+        ListIterator<String> listIterator = list.listIterator();
+
+        assertTrue(listIterator.hasNext());
+        assertFalse(listIterator.hasPrevious());
+        assertTrue(listIterator.previousIndex() == -1);
+        assertTrue(listIterator.next().equals("aa0a"));
+        listIterator.add("e");
+        assertTrue(list.size() == previousSize + 1);
+        assertTrue(listIterator.next().equals("e"));
+    }
+
+    @Test
+    public void testListIteratorWithIndex() throws Exception {
+        fillList();
+        int previousSize = list.size();
+        ListIterator<String> listIterator = list.listIterator(1);
+
+        assertTrue(listIterator.hasNext());
+        assertTrue(listIterator.hasPrevious());
+        assertTrue(listIterator.previousIndex() == -0);
+        assertTrue(listIterator.next().equals("aa2a"));
+        listIterator.add("e");
+        assertTrue(list.size() == previousSize + 1);
+        assertTrue(listIterator.next().equals("e"));
     }
 
 

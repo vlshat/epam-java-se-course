@@ -296,17 +296,137 @@ public class CustomLinkedList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        return null;
+        return new ListIterator<T>() {
+
+            int currentIndex = -1;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (currentIndex + 1== size)
+                    throw new NoSuchElementException();
+                return (T) CustomLinkedList.this.getNodeByIndex(++currentIndex).value;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return currentIndex > 0;
+            }
+
+            @Override
+            public T previous() {
+                if (currentIndex == 0) {
+                    throw new NoSuchElementException();
+                }
+                return (T) CustomLinkedList.this.getNodeByIndex(--currentIndex).value;
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex < size ? currentIndex + 1 : -1;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex > 0 ? currentIndex - 1 : -1;
+            }
+
+            @Override
+            public void remove() {
+                CustomLinkedList.this.remove(currentIndex);
+            }
+
+            @Override
+            public void set(T t) {
+                CustomLinkedList.this.set(currentIndex, t);
+            }
+
+            @Override
+            public void add(T t) {
+                CustomLinkedList.this.add(currentIndex + 1, t);
+            }
+        };
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        indexValidator(index);
+        return new ListIterator<T>() {
+
+            int currentIndex = index;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (currentIndex + 1== size)
+                    throw new NoSuchElementException();
+                return (T) CustomLinkedList.this.getNodeByIndex(++currentIndex).value;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return currentIndex > 0;
+            }
+
+            @Override
+            public T previous() {
+                if (currentIndex == 0) {
+                    throw new NoSuchElementException();
+                }
+                return (T) CustomLinkedList.this.getNodeByIndex(--currentIndex).value;
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex < size ? currentIndex + 1 : -1;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex > 0 ? currentIndex - 1 : -1;
+            }
+
+            @Override
+            public void remove() {
+                CustomLinkedList.this.remove(currentIndex);
+            }
+
+            @Override
+            public void set(T t) {
+                CustomLinkedList.this.set(currentIndex, t);
+            }
+
+            @Override
+            public void add(T t) {
+                CustomLinkedList.this.add(currentIndex + 1, t);
+            }
+        };
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        indexValidator(fromIndex);
+        indexValidator(toIndex);
+
+        List<T> result = new CustomArrayList<T>();
+
+        Node<T> node = getNodeByIndex(fromIndex - 1);
+
+        for (int i = fromIndex; i < toIndex ; i++) {
+            node = node.next;
+            result.add(node.value);
+        }
+
+
+        return result;
     }
 
     private void indexValidator(int index) {
@@ -348,5 +468,15 @@ public class CustomLinkedList<T> implements List<T> {
 
             throw new NoSuchElementException();
         }
+    }
+
+    private Node<T> getNodeByIndex(int index) {
+        Node<T> node = head;
+
+        for (int i = 0; i <= index ; i++) {
+            node = node.next;
+        }
+
+        return node;
     }
 }

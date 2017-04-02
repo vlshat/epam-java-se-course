@@ -232,17 +232,133 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        return null;
+        return new ListIterator<T>() {
+
+            int currentIndex = -1;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (currentIndex + 1== size)
+                    throw new NoSuchElementException();
+                return (T) data[++currentIndex];
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return currentIndex > 0;
+            }
+
+            @Override
+            public T previous() {
+                if (currentIndex == 0) {
+                    throw new NoSuchElementException();
+                }
+                return (T) data[--currentIndex];
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex < size ? currentIndex + 1 : -1;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex > 0 ? currentIndex - 1 : -1;
+            }
+
+            @Override
+            public void remove() {
+                CustomArrayList.this.remove(currentIndex);
+            }
+
+            @Override
+            public void set(T t) {
+                CustomArrayList.this.set(currentIndex, t);
+            }
+
+            @Override
+            public void add(T t) {
+                CustomArrayList.this.add(currentIndex + 1, t);
+            }
+        };
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        indexValidator(index);
+        return new ListIterator<T>() {
+
+            int currentIndex = index;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (currentIndex + 1== size)
+                    throw new NoSuchElementException();
+                return (T) data[++currentIndex];
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return currentIndex > 0;
+            }
+
+            @Override
+            public T previous() {
+                if (currentIndex == 0) {
+                    throw new NoSuchElementException();
+                }
+                return (T) data[--currentIndex];
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex < size ? currentIndex + 1 : -1;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex > 0 ? currentIndex - 1 : -1;
+            }
+
+            @Override
+            public void remove() {
+                CustomArrayList.this.remove(currentIndex);
+            }
+
+            @Override
+            public void set(T t) {
+                CustomArrayList.this.set(currentIndex, t);
+            }
+
+            @Override
+            public void add(T t) {
+                CustomArrayList.this.add(currentIndex + 1, t);
+            }
+        };
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        indexValidator(fromIndex);
+        indexValidator(toIndex);
+
+        List<T> result = new CustomArrayList<T>();
+
+        for (int i = fromIndex; i < toIndex; i++) {
+            result.add((T) data[i]);
+        }
+
+        return result;
     }
 
     private void ensureCapacity() {
@@ -276,4 +392,5 @@ public class CustomArrayList<T> implements List<T> {
             throw new NoSuchElementException();
         }
     }
+
 }
