@@ -139,6 +139,8 @@ public class CustomHashMapTest {
         map.put(12, "bbbb");
 
         m.putAll(map);
+        assertTrue(m.containsKey(10));
+        assertTrue(m.containsKey(12));
     }
 
 

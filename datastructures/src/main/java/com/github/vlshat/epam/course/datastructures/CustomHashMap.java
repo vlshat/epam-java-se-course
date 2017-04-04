@@ -1,6 +1,5 @@
 package com.github.vlshat.epam.course.datastructures;
 
-import jdk.nashorn.internal.objects.NativeUint8Array;
 
 import java.util.*;
 
@@ -209,7 +208,9 @@ public class CustomHashMap<K, V> implements Map<K, V>{
 
         @Override
         public V setValue(V value) {
-            return this.value = value;
+            V previousValue = value;
+            this.value = value;
+            return previousValue;
         }
     }
 }
