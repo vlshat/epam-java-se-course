@@ -12,32 +12,69 @@ public class CustomArrayList<T> implements List<T> {
     private Object[] data = new Object[DEFAULT_CAPACITY];
     private int size = 0;
 
+    /**
+     * @return the number of elements in this list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * @return true if this list contains elements
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * @param o element
+     * @return <tt>true</tt> if this element in list
+     */
     @Override
     public boolean contains(Object o) {
 
         return indexOf(o) != -1;
     }
 
+    /**
+     * @return iterator elements in this list
+     */
     @Override
     public Iterator<T> iterator() {
-        return new CustomListIterator<>();
+        return new Iterator<T>() {
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public T next() {
+                if (hasNext()) {
+                    return (T) data[index++];
+                }
+
+                throw new NoSuchElementException();
+            }
+        };
     }
 
+    /**
+     * @return array containing elements of list in proper sequence
+     */
     @Override
     public Object[] toArray() {
         return Arrays.copyOf(data, size);
     }
 
+    /**
+     * @param a
+     * @return array containing elements of list in proper sequence
+     * @throws NullPointerException if a is null
+     */
     @Override
     public <T1> T1[] toArray(T1[] a) {
 
@@ -57,6 +94,10 @@ public class CustomArrayList<T> implements List<T> {
         return a;
     }
 
+    /**
+     * @param t element to add to list
+     * @return true
+     */
     @Override
     public boolean add(T t) {
 
@@ -66,6 +107,10 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param o element to remove
+     * @return true if list contained this element
+     */
     @Override
     public boolean remove(Object o) {
 
@@ -84,6 +129,10 @@ public class CustomArrayList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * @param c collection to be checked
+     * @return true if this list contains all elements if specified collection
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         Object[] elements = c.toArray();
@@ -97,6 +146,10 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be added to this list
+     * @return
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
 
@@ -109,6 +162,12 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param index index at which to insert the first element from the
+     *              specified collection
+     * @param c collection containing elements to be added to this list
+     * @return
+     */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
 
@@ -121,6 +180,10 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be removed from this list
+     * @return
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
 
@@ -132,6 +195,10 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be retained in this list
+     * @return
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
         List<T> elementsToSave = new CustomArrayList<T>();
@@ -149,12 +216,21 @@ public class CustomArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Removes all elements from list
+     */
     @Override
     public void clear() {
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
+    /**
+     * Returns element by index.
+     * @param index of the element
+     * @return element
+     * @throws IndexOutOfBoundsException if index less than 0 or more then size()
+     */
     @Override
     public T get(int index) {
 
@@ -163,16 +239,29 @@ public class CustomArrayList<T> implements List<T> {
         return (T) data[index];
     }
 
+    /**
+     * Replaces element at the specified position
+     * @param index position of the element
+     * @param element
+     * @return previous element at this position
+     */
     @Override
     public T set(int index, T element) {
 
         indexValidator(index);
 
+        T previousElement = (T) data[index];
         data[index] = element;
 
-        return element;
+        return previousElement;
     }
 
+    /**
+     * @param index destination
+     * @param element element to add to list
+     * @return true
+     * @throws IndexOutOfBoundsException
+     */
     @Override
     public void add(int index, T element) {
         indexValidator(index);
@@ -184,6 +273,11 @@ public class CustomArrayList<T> implements List<T> {
 
     }
 
+    /**
+     * Removes element from specified position.
+     * @param index position of element in list
+     * @return removed value
+     */
     @Override
     public T remove(int index) {
 
@@ -197,6 +291,10 @@ public class CustomArrayList<T> implements List<T> {
         return value;
     }
 
+    /**
+     * @param o element to find
+     * @return first position of element
+     */
     @Override
     public int indexOf(Object o) {
 
@@ -212,6 +310,10 @@ public class CustomArrayList<T> implements List<T> {
         return -1;
     }
 
+    /**
+     * @param o element to find
+     * @return last position of element
+     */
     @Override
     public int lastIndexOf(Object o) {
 
@@ -230,6 +332,9 @@ public class CustomArrayList<T> implements List<T> {
         return index;
     }
 
+    /**
+     * @return list iterator over list elements
+     */
     @Override
     public ListIterator<T> listIterator() {
         return new ListIterator<T>() {
@@ -288,6 +393,10 @@ public class CustomArrayList<T> implements List<T> {
         };
     }
 
+    /**
+     * @param index starting position
+     * @return list iterator over list elements
+     */
     @Override
     public ListIterator<T> listIterator(int index) {
         indexValidator(index);
@@ -347,6 +456,11 @@ public class CustomArrayList<T> implements List<T> {
         };
     }
 
+    /**
+     * @param fromIndex starting position (inclusive)
+     * @param toIndex last position (exclusive)
+     * @return CustomArrayList with elements on positions from fromIndex to toIndex(exclusive)
+     */
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         indexValidator(fromIndex);
@@ -373,24 +487,4 @@ public class CustomArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException();
         }
     }
-
-    private class CustomListIterator<T> implements Iterator<T> {
-
-        private int index = 0;
-
-        @Override
-        public boolean hasNext() {
-            return index < size;
-        }
-
-        @Override
-        public T next() {
-            if (hasNext()) {
-                return (T) data[index++];
-            }
-
-            throw new NoSuchElementException();
-        }
-    }
-
 }

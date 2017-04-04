@@ -10,27 +10,43 @@ public class CustomLinkedList<T> implements List<T> {
     private Node<T> head = new Node<>(null);
     private int size = 0;
 
+    /**
+     * @return the number of elements in this list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * @return true if this list contains elements
+     */
     @Override
     public boolean isEmpty() {
         return !head.hasNext();
     }
 
+    /**
+     * @param o element
+     * @return <tt>true</tt> if this element in list
+     */
     @Override
     public boolean contains(Object o) {
 
         return indexOf(o) != -1;
     }
 
+    /**
+     * @return iterator elements in this list
+     */
     @Override
     public Iterator<T> iterator() {
         return new CustomLinkedListIterator<>();
     }
 
+    /**
+     * @return array containing elements of list in proper sequence
+     */
     @Override
     public Object[] toArray() {
 
@@ -44,6 +60,11 @@ public class CustomLinkedList<T> implements List<T> {
         return objects;
     }
 
+    /**
+     * @param a
+     * @return array containing elements of list in proper sequence
+     * @throws NullPointerException if a is null
+     */
     @Override
     public <T1> T1[] toArray(T1[] a) {
 
@@ -75,6 +96,10 @@ public class CustomLinkedList<T> implements List<T> {
         return a;
     }
 
+    /**
+     * @param t element to add to list
+     * @return true
+     */
     @Override
     public boolean add(T t) {
         Node<T> iterator = head;
@@ -89,6 +114,10 @@ public class CustomLinkedList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * @param o element to remove
+     * @return true if list contained this element
+     */
     @Override
     public boolean remove(Object o) {
 
@@ -115,6 +144,10 @@ public class CustomLinkedList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * @param c collection to be checked
+     * @return true if this list contains all elements if specified collection
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
 
@@ -129,6 +162,10 @@ public class CustomLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be added to this list
+     * @return
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
         Object[] elements = c.toArray();
@@ -140,6 +177,12 @@ public class CustomLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param index index at which to insert the first element from the
+     *              specified collection
+     * @param c collection containing elements to be added to this list
+     * @return
+     */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         Object[] elements = c.toArray();
@@ -151,6 +194,10 @@ public class CustomLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be removed from this list
+     * @return
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         Object[] elements = c.toArray();
@@ -162,6 +209,10 @@ public class CustomLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * @param c collection containing elements to be retained in this list
+     * @return
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
 
@@ -180,12 +231,21 @@ public class CustomLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Removes all elements from list
+     */
     @Override
     public void clear() {
         size = 0;
         head.next = null;
     }
 
+    /**
+     * Returns element by index.
+     * @param index of the element
+     * @return element
+     * @throws IndexOutOfBoundsException if index less than 0 or more then size()
+     */
     @Override
     public T get(int index) {
 
@@ -200,6 +260,12 @@ public class CustomLinkedList<T> implements List<T> {
         return node.value;
     }
 
+    /**
+     * Replaces element at the specified position
+     * @param index position of the element
+     * @param element
+     * @return previous element at this position
+     */
     @Override
     public T set(int index, T element) {
         indexValidator(index);
@@ -219,6 +285,11 @@ public class CustomLinkedList<T> implements List<T> {
         return element;
     }
 
+    /**
+     * @param index destination
+     * @param element element to add to list
+     * @return true
+     */
     @Override
     public void add(int index, T element) {
         indexValidator(index);
@@ -237,6 +308,11 @@ public class CustomLinkedList<T> implements List<T> {
         size += 1;
     }
 
+    /**
+     * Removes element from specified position.
+     * @param index position of element in list
+     * @return removed value
+     */
     @Override
     public T remove(int index) {
 
@@ -256,6 +332,10 @@ public class CustomLinkedList<T> implements List<T> {
         return deletedNode.value;
     }
 
+    /**
+     * @param o element to find
+     * @return first position of element
+     */
     @Override
     public int indexOf(Object o) {
 
@@ -274,6 +354,10 @@ public class CustomLinkedList<T> implements List<T> {
         return -1;
     }
 
+    /**
+     * @param o element to find
+     * @return last position of element
+     */
     @Override
     public int lastIndexOf(Object o) {
 
@@ -294,6 +378,9 @@ public class CustomLinkedList<T> implements List<T> {
         return index;
     }
 
+    /**
+     * @return list iterator over list elements
+     */
     @Override
     public ListIterator<T> listIterator() {
         return new ListIterator<T>() {
@@ -352,6 +439,10 @@ public class CustomLinkedList<T> implements List<T> {
         };
     }
 
+    /**
+     * @param index starting position
+     * @return list iterator over list elements
+     */
     @Override
     public ListIterator<T> listIterator(int index) {
         indexValidator(index);
@@ -411,6 +502,11 @@ public class CustomLinkedList<T> implements List<T> {
         };
     }
 
+    /**
+     * @param fromIndex starting position (inclusive)
+     * @param toIndex last position (exclusive)
+     * @return CustomArrayList with elements on positions from fromIndex to toIndex(exclusive)
+     */
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         indexValidator(fromIndex);

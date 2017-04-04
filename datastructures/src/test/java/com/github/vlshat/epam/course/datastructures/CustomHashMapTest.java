@@ -110,15 +110,10 @@ public class CustomHashMapTest {
         m.containsKey(null);
     }
 
-    @Test(expected = ClassCastException.class)
-    public void testThatContainsKeyMethodThrowsExceptionOnWrongKeyClass() throws Exception{
-        m.containsKey("aaa");
-    }
-
-
     @Test
     public void testContainsValueMethodWorksProperlyOnNullInputValue() throws Exception{
     }
+
 
     @Test(expected = ClassCastException.class)
     @Ignore
@@ -141,6 +136,11 @@ public class CustomHashMapTest {
         m.putAll(map);
         assertTrue(m.containsKey(10));
         assertTrue(m.containsKey(12));
+    }
+
+    @Test(expected = ClassCastException.class)
+    public void testThatContainsKeyMethodThrowsExceptionOnWrongKeyClass() throws Exception{
+        m.containsKey("a");
     }
 
 
