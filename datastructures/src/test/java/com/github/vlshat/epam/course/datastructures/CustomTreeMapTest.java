@@ -44,8 +44,27 @@ public class CustomTreeMapTest {
 
     @Test
     public void testThatWeCanPutKeyValuePairAndCanCheckIt() {
+        m.put(1, "c");
         m.put(new Integer(3), "abc");
         assertThat(m.containsKey(3), is(true));
+        assertThat(m.size(), is(2));
+    }
+
+    @Test
+    public void testGeMethod() {
+        m.put(new Integer(1), "a");
+        m.put(new Integer(3), "b");
+        assertThat(m.containsKey(3), is(true));
+        assertThat(m.get(3), is("b"));
+    }
+    @Test
+    @Ignore
+    public void testContainsValueMethod() {
+        m.put(1, "a");
+        m.put(2, "b");
+
+        assertTrue(m.containsValue("b"));
+        assertFalse(m.containsValue("c"));
     }
 
     @Test(expected = NullPointerException.class)

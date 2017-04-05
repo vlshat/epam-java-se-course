@@ -51,12 +51,15 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
+
         return false;
     }
 
     @Override
     public V get(Object key) {
-        return null;
+
+        Node<K, V> result = find(root, (K) key);
+        return result == null ? null : result.value;
     }
 
     @Override
@@ -105,9 +108,9 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         if (node.key.equals(key)) {
             node.value = value;
         } else if (node.key.compareTo(key) > 0) {
-            node.right = put(node.right, key, value);
-        } else {
             node.left = put(node.left, key, value);
+        } else {
+            node.right = put(node.right, key, value);
         }
 
         return node;
