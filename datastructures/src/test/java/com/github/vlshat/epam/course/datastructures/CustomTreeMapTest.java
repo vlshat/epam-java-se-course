@@ -58,10 +58,11 @@ public class CustomTreeMapTest {
         assertThat(m.get(3), is("b"));
     }
     @Test
-    @Ignore
     public void testContainsValueMethod() {
         m.put(1, "a");
         m.put(2, "b");
+        m.put(14, "g");
+        m.put(15, "aaa");
 
         assertTrue(m.containsValue("b"));
         assertFalse(m.containsValue("c"));
