@@ -2,28 +2,51 @@ package com.github.vlshat.epam.course.datastructures;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * @author Vladislav Shatilenko
  */
-public class CustomTreeMap<K, V> implements Map<K, V> {
+public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
+
+    private Node<K, V> root;
+    private int size = 0;
+
     public static void main(String[] args) {
         System.out.println("Glaube".hashCode() % 16);
     }
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean containsKey(Object key) {
-        return false;
+        Objects.requireNonNull(key);
+
+        if (root == null)
+            return false;
+
+        return find(root, (K) key) != null;
+    }
+
+    private Node<K, V> find(Node<K, V> node, K key) {
+        if (node == null)
+            return null;
+
+        if (node.key.equals(key)){
+            return node;
+        } else if (node.key.compareTo(key) > 0) {
+            return find(node.left, key);
+        } else {
+            return find(node.right, key);
+        }
     }
 
     @Override
@@ -38,6 +61,8 @@ public class CustomTreeMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(K key, V value) {
+        Objects.requireNonNull(key);
+        root = put(root, key, value);
         return null;
     }
 
@@ -69,5 +94,35 @@ public class CustomTreeMap<K, V> implements Map<K, V> {
     @Override
     public Set<Entry<K, V>> entrySet() {
         return null;
+    }
+
+    private Node<K, V> put(Node<K, V> node, K key, V value) {
+        if (node == null) {
+            size += 1;
+            return new Node<>(key, value);
+        }
+
+        if (node.key.equals(key)) {
+            node.value = value;
+        } else if (node.key.compareTo(key) > 0) {
+            node.right = put(node.right, key, value);
+        } else {
+            node.left = put(node.left, key, value);
+        }
+
+        return node;
+
+    }
+
+    private class Node<K extends Comparable<K>, V> {
+        private final K key;
+        private V value;
+        private Node<K, V> left;
+        private Node<K, V> right;
+
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }
