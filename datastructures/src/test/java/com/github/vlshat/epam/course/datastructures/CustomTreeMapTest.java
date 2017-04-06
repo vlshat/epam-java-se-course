@@ -142,8 +142,15 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
     public void testThatMapCalculateItsSizeProperly() {
+        int[] keys = {8, 10, 5, 2};
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        assertTrue(m.size() == keys.length);
+        m.remove(2);
+        assertTrue(m.size() == keys.length - 1);
     }
 
     @Test
@@ -210,6 +217,25 @@ public class CustomTreeMapTest {
     public void removeFourthTestCase() {
         int[] keys = {15, 16, 5, 2, 9, 7, 8, 6, 3};
         int keyToRemove = 5;
+
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        m.remove(keyToRemove);
+
+        assertFalse(m.containsKey(keyToRemove));
+        for (int k : keys) {
+            if (k != keyToRemove) {
+                assertTrue(m.containsKey(k));
+            }
+        }
+    }
+
+    @Test
+    public void removeRootElement() {
+        int[] keys = {15, 16, 5, 2, 9, 7, 8, 6, 3};
+        int keyToRemove = 15;
 
         for (int k : keys) {
             m.put(k, "a");

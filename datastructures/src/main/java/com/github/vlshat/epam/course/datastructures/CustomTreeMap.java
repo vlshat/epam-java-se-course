@@ -76,38 +76,49 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
             }
         } else {
 
-            if (node.right.left == null) {
-                node.right.left = node.left;
+                if (node.right.left == null) {
+                    node.right.left = node.left;
 
-                if (node.key.compareTo(parent.key) > 0) {
-                    parent.right = node.right;
+                   if (parent == null) {
+                       root = node.right;
+                   } else {
+                       if (node.key.compareTo(parent.key) > 0) {
+                           parent.right = node.right;
+                       } else {
+                           parent.left = node.right;
+                       }
+                   }
+
                 } else {
-                    parent.left = node.right;
-                }
-            } else {
 
-                Node<K, V> leastRight = node.right.left;
-                Node<K, V> previous = node.right;
+                    Node<K, V> leastRight = node.right.left;
+                    Node<K, V> previous = node.right;
 
-                while (true) {
-                    if (leastRight.left == null)
-                        break;
+                    while (true) {
+                        if (leastRight.left == null)
+                            break;
 
-                    previous = leastRight;
-                    leastRight = leastRight.left;
-                }
+                        previous = leastRight;
+                        leastRight = leastRight.left;
+                    }
 
-                previous.left = leastRight.right;
-                leastRight.right = node.right;
-                leastRight.left = node.left;
+                    previous.left = leastRight.right;
+                    leastRight.right = node.right;
+                    leastRight.left = node.left;
 
-                if (node.key.compareTo(parent.key) > 0) {
-                    parent.right = leastRight;
-                } else {
-                    parent.left = leastRight;
+                    if (parent == null) {
+                        root = leastRight;
+                    } else {
+                        if (node.key.compareTo(parent.key) > 0) {
+                            parent.right = leastRight;
+                        } else {
+                            parent.left = leastRight;
+                        }
+                    }
                 }
             }
-        }
+
+        size -= 1;
 
         return node.value;
     }
@@ -164,6 +175,7 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         private V value;
         private Node<K, V> left;
         private Node<K, V> right;
+
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
@@ -188,11 +200,12 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
         return result;
     }
+
     private Node<K, V> find(Node<K, V> node, K key) {
         if (node == null)
             return null;
 
-        if (node.key.equals(key)){
+        if (node.key.equals(key)) {
             return node;
         } else if (node.key.compareTo(key) > 0) {
             return find(node.left, key);
