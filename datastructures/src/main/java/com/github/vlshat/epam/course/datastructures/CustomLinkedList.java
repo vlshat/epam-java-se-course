@@ -3,7 +3,8 @@ package com.github.vlshat.epam.course.datastructures;
 import java.util.*;
 
 /**
- * Created by vladislav on 28.03.17.
+ * @author Vladislav Shatilenko
+ * This class is an implementation of linked list.
  */
 public class CustomLinkedList<T> implements List<T> {
 

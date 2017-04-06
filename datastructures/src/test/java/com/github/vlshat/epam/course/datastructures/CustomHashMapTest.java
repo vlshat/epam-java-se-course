@@ -115,11 +115,6 @@ public class CustomHashMapTest {
     }
 
 
-    @Test(expected = ClassCastException.class)
-    @Ignore
-    public void testValueContainsMethodThrowsExceptionOnWrongInputValueClass() throws Exception{
-    }
-
     @Test
     public void testThatMapCalculateItsSizeProperly() throws Exception{
         m.put(1, "a");

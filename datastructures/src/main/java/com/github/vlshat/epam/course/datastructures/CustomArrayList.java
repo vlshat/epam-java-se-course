@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * @author Vladislav Shatilenko
+ * This class is an implementation of dynamic array.
  */
 public class CustomArrayList<T> implements List<T> {
 

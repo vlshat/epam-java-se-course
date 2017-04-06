@@ -4,7 +4,8 @@ package com.github.vlshat.epam.course.datastructures;
 import java.util.*;
 
 /**
- * Created by vladislav on 27.03.17.
+ * @author Vladislav Shatilenko
+ * This class is an implementation of Map (aka dictionary).
  */
 public class CustomHashMap<K, V> implements Map<K, V>{
     private static final int DEFAULT_CAPACITY = 16;
@@ -12,16 +13,26 @@ public class CustomHashMap<K, V> implements Map<K, V>{
     private CustomEntry<K, V>[] buckets = new CustomEntry[DEFAULT_CAPACITY];
     private int size = 0;
 
+    /**
+     * @return the number of key-value mappings in map.
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * @return false if this map contains key-value mappings.
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * @param key
+     * @return true if key is presented in map.
+     */
     @Override
     public boolean containsKey(Object key) {
         if (key == null)
@@ -45,6 +56,10 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         return false;
     }
 
+    /**
+     * @param value
+     * @return true if map contains such value.
+     */
     @Override
     public boolean containsValue(Object value) {
 
@@ -67,6 +82,10 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         return false;
     }
 
+    /**
+     * @param key
+     * @return value associated with this key, null if such key not presented.
+     */
     @Override
     public V get(Object key) {
         Objects.requireNonNull(key);
@@ -88,6 +107,12 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         return null;
     }
 
+    /**
+     * Adds key to the map. If such key already presented, previous value wil be replaced.
+     * @param key
+     * @param value
+     * @return previous value associated with this key.
+     */
     @Override
     public V put(K key, V value) {
         Objects.requireNonNull(key);
@@ -116,6 +141,10 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         return null;
     }
 
+    /**
+     * @param key
+     * @return removed value.
+     */
     @Override
     public V remove(Object key) {
         if (key == null) {
@@ -145,6 +174,10 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         return null;
     }
 
+    /**
+     * Maps all values from m.
+     * @param m
+     */
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
         for (Map.Entry<? extends K, ? extends V> entry : m.entrySet()) {
@@ -152,6 +185,9 @@ public class CustomHashMap<K, V> implements Map<K, V>{
         }
     }
 
+    /**
+     * Removes all mappings from map.
+     */
     @Override
     public void clear() {
         size = 0;

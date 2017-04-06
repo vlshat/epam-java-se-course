@@ -7,22 +7,33 @@ import java.util.Set;
 
 /**
  * @author Vladislav Shatilenko
+ * This class is an implementation of Map (aka dictionary) based on binary tree.
  */
 public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     private Node<K, V> root;
     private int size = 0;
 
+    /**
+     * @return the number of key-value mappings in map.
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * @return false if this map contains key-value mappings.
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * @param key
+     * @return true if key is presented in map.
+     */
     @Override
     public boolean containsKey(Object key) {
         Objects.requireNonNull(key);
@@ -33,12 +44,20 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         return find(root, (K) key) != null;
     }
 
+    /**
+     * @param value
+     * @return true if map contains such value.
+     */
     @Override
     public boolean containsValue(Object value) {
 
         return find(root, (V) value) != null;
     }
 
+    /**
+     * @param key
+     * @return value associated with this key, null if such key not presented.
+     */
     @Override
     public V get(Object key) {
 
@@ -46,6 +65,12 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         return result == null ? null : result.value;
     }
 
+    /**
+     * Adds key to the map. If such key already presented, previous value wil be replaced.
+     * @param key
+     * @param value
+     * @return previous value associated with this key.
+     */
     @Override
     public V put(K key, V value) {
         Objects.requireNonNull(key);
@@ -54,6 +79,10 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         return previousValue[0];
     }
 
+    /**
+     * @param key
+     * @return removed value.
+     */
     @Override
     public V remove(Object key) {
         Node<K, V>[] nodes = findNodeWithParent((K) key);
@@ -125,9 +154,12 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-
+        throw new UnsupportedOperationException();
     }
 
+    /**
+     * Removes all mappings from map.
+     */
     @Override
     public void clear() {
         size = 0;

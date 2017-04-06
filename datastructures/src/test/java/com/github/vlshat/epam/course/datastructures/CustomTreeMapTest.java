@@ -109,7 +109,6 @@ public class CustomTreeMapTest {
     }
 
     @Test(expected = ClassCastException.class)
-    @Ignore
     public void testThatContainsKeyMethodThrowsExceptionOnWrongKeyClass() {
         m.put(1, ""); //TODO need to remove
         m.containsKey(new String(""));
@@ -133,12 +132,6 @@ public class CustomTreeMapTest {
         IntStream.range(1, 10).forEach(
                 i -> assertTrue(m.containsKey(i))
         );
-    }
-
-    @Test(expected = ClassCastException.class)
-    @Ignore
-    public void testValueContainsMethodThrowsExceptionOnWrongInputValueClass() {
-
     }
 
     @Test
