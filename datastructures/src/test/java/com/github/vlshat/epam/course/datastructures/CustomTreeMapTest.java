@@ -207,7 +207,24 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    
+    public void removeFourthTestCase() {
+        int[] keys = {15, 16, 5, 2, 9, 7, 8, 6, 3};
+        int keyToRemove = 5;
+
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        m.remove(keyToRemove);
+
+        assertFalse(m.containsKey(keyToRemove));
+        for (int k : keys) {
+            if (k != keyToRemove) {
+                assertTrue(m.containsKey(k));
+            }
+        }
+    }
+
 
 
 }
