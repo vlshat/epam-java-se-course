@@ -74,6 +74,17 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
                     parent.left = node.left;
                 }
             }
+        } else {
+
+            if (node.right.left == null) {
+                node.right.left = node.left;
+
+                if (node.key.compareTo(parent.key) > 0) {
+                    parent.right = node.right;
+                } else {
+                    parent.left = node.right;
+                }
+            }
         }
 
         return null;

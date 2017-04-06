@@ -167,7 +167,6 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
     public void removeSecondTestCase() {
         int[] keys = {8, 10, 5, 2, 6, 7};
         int keyToRemove = 5;
