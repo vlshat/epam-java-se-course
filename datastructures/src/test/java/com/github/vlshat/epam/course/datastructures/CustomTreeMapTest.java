@@ -187,7 +187,6 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
     public void removeThirdTestCase() {
         int[] keys = {8, 10, 5, 2, 7, 6};
         int keyToRemove = 5;
@@ -198,14 +197,17 @@ public class CustomTreeMapTest {
 
         m.remove(keyToRemove);
 
+        assertFalse(m.containsKey(keyToRemove));
         for (int k : keys) {
             if (k != keyToRemove) {
                 assertTrue(m.containsKey(k));
             }
         }
 
-        assertFalse(m.containsKey(keyToRemove));
     }
+
+    @Test
+    
 
 
 }
