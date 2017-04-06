@@ -69,20 +69,17 @@ public class CustomTreeMapTest {
     }
 
     @Test(expected = NullPointerException.class)
-    @Ignore
     public void testThatWeCantPutNullKey() {
         m.put(null, "abc");
     }
 
     @Test
-    @Ignore
     public void testThatWeCanPutNullValue() {
         m.put(1, null);
         assertThat(m.containsKey(1), is(true));
     }
 
     @Test
-    @Ignore
     public void testThatMapCanPutPairWithKeyThatAlreadyPresented() {
 
         String oldValue = "aaaa";
@@ -96,7 +93,6 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
     public void testThatIfWePutNewValueOnExistingKeyPreviousValueWillBeReturned() {
         String oldValue = "aaaa";
         String newValue = "bbbb";
@@ -108,7 +104,6 @@ public class CustomTreeMapTest {
     }
 
     @Test(expected = NullPointerException.class)
-    @Ignore
     public void testThatContainsKeyMethodThrowsExceptionOnNullKey() {
         m.containsKey(null);
     }
@@ -121,17 +116,6 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
-    public void testContainsValueMethodWorksProperlyOn() {
-        String value = "aaaa";
-
-        m.put(1, value);
-
-        assertTrue(m.containsValue(value));
-    }
-
-    @Test
-    @Ignore
     public void testContainsValueMethodWorksProperlyOnNullInputValue() {
         String value = "aaaa";
 
@@ -141,7 +125,6 @@ public class CustomTreeMapTest {
     }
 
     @Test
-    @Ignore
     public void testThatWeCanPut10DifferentKeysInMap() {
         IntStream.range(1, 10).forEach(
                 i -> m.put(i, String.valueOf(i))
@@ -155,11 +138,74 @@ public class CustomTreeMapTest {
     @Test(expected = ClassCastException.class)
     @Ignore
     public void testValueContainsMethodThrowsExceptionOnWrongInputValueClass() {
+
     }
 
     @Test
     @Ignore
     public void testThatMapCalculateItsSizeProperly() {
+    }
+
+    @Test
+    public void removeFirstTestCase() {
+        int[] keys = {8, 10, 5, 2};
+        int keyToRemove = 5;
+
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        m.remove(keyToRemove);
+
+        for (int k : keys) {
+            if (k != keyToRemove) {
+                assertTrue(m.containsKey(k));
+            }
+        }
+
+        assertFalse(m.containsKey(keyToRemove));
+    }
+
+    @Test
+    @Ignore
+    public void removeSecondTestCase() {
+        int[] keys = {8, 10, 5, 2, 6, 7};
+        int keyToRemove = 5;
+
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        m.remove(keyToRemove);
+
+        for (int k : keys) {
+            if (k != keyToRemove) {
+                assertTrue(m.containsKey(k));
+            }
+        }
+
+        assertFalse(m.containsKey(keyToRemove));
+    }
+
+    @Test
+    @Ignore
+    public void removeThirdTestCase() {
+        int[] keys = {8, 10, 5, 2, 7, 6};
+        int keyToRemove = 5;
+
+        for (int k : keys) {
+            m.put(k, "a");
+        }
+
+        m.remove(keyToRemove);
+
+        for (int k : keys) {
+            if (k != keyToRemove) {
+                assertTrue(m.containsKey(k));
+            }
+        }
+
+        assertFalse(m.containsKey(keyToRemove));
     }
 
 

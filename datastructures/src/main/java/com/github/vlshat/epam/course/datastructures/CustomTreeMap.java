@@ -13,9 +13,6 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
     private Node<K, V> root;
     private int size = 0;
 
-    public static void main(String[] args) {
-        System.out.println("Glaube".hashCode() % 16);
-    }
     @Override
     public int size() {
         return size;
@@ -36,42 +33,10 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         return find(root, (K) key) != null;
     }
 
-    private Node<K, V> find(Node<K, V> node, K key) {
-        if (node == null)
-            return null;
-
-        if (node.key.equals(key)){
-            return node;
-        } else if (node.key.compareTo(key) > 0) {
-            return find(node.left, key);
-        } else {
-            return find(node.right, key);
-        }
-    }
-
     @Override
     public boolean containsValue(Object value) {
 
         return find(root, (V) value) != null;
-    }
-
-    private Node<K, V> find(Node<K, V> node, V value) {
-        Node<K, V> result;
-
-        if (node == null)
-            return null;
-
-        if (node.value.equals(value)) {
-            return node;
-        }
-
-        result = find(node.right, value);
-
-        if (result == null)
-            result = find(node.left, value);
-
-        return result;
-
     }
 
     @Override
@@ -84,12 +49,33 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         Objects.requireNonNull(key);
-        root = put(root, key, value);
-        return null;
+        V[] previousValue = (V[]) new Object[1];
+        root = put(root, key, value, previousValue);
+        return previousValue[0];
     }
 
     @Override
     public V remove(Object key) {
+        Node<K, V>[] nodes = findNodeWithParent((K) key);
+        Node<K, V> parent = nodes[0];
+        Node<K, V> node = nodes[1];
+
+        if (node == null) {
+            return null;
+        }
+
+        if (node.right == null) {
+            if (parent == null) {
+                root = node.left;
+            } else {
+                if (node.key.compareTo(parent.key) > 0) {
+                    parent.right = node.left;
+                } else {
+                    parent.left = node.left;
+                }
+            }
+        }
+
         return null;
     }
 
@@ -119,18 +105,19 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
         return null;
     }
 
-    private Node<K, V> put(Node<K, V> node, K key, V value) {
+    private Node<K, V> put(Node<K, V> node, K key, V value, V[] previousValue) {
         if (node == null) {
             size += 1;
             return new Node<>(key, value);
         }
 
         if (node.key.equals(key)) {
+            previousValue[0] = node.value;
             node.value = value;
         } else if (node.key.compareTo(key) > 0) {
-            node.left = put(node.left, key, value);
+            node.left = put(node.left, key, value, previousValue);
         } else {
-            node.right = put(node.right, key, value);
+            node.right = put(node.right, key, value, previousValue);
         }
 
         return node;
@@ -138,14 +125,71 @@ public class CustomTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     private class Node<K extends Comparable<K>, V> {
+
         private final K key;
+
         private V value;
         private Node<K, V> left;
         private Node<K, V> right;
-
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
         }
+    }
+
+    private Node<K, V> find(Node<K, V> node, V value) {
+
+        Node<K, V> result;
+
+        if (node == null)
+            return null;
+
+        if (node.value.equals(value)) {
+            return node;
+        }
+
+        result = find(node.right, value);
+
+        if (result == null)
+            result = find(node.left, value);
+
+        return result;
+    }
+    private Node<K, V> find(Node<K, V> node, K key) {
+        if (node == null)
+            return null;
+
+        if (node.key.equals(key)){
+            return node;
+        } else if (node.key.compareTo(key) > 0) {
+            return find(node.left, key);
+        } else {
+            return find(node.right, key);
+        }
+    }
+
+    private Node<K, V>[] findNodeWithParent(K key) {
+        Node<K, V> parent = null;
+        Node<K, V> current = root;
+
+
+        while (current != null) {
+            if (current.key.compareTo(key) > 0) {
+                parent = current;
+                current = current.left;
+            } else if (current.key.compareTo(key) < 0) {
+                parent = current;
+                current = current.right;
+            } else {
+                break;
+            }
+        }
+
+        Node<K, V>[] result = new Node[2];
+        result[0] = parent;
+        result[1] = current;
+
+        return result;
+
     }
 }
